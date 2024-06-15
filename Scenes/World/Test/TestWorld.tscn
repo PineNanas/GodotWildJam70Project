@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cwkuwcl33jn1r"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="1_2gyu5"]
+[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="1_2gyu5"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_vbv0v"]
 [ext_resource type="Texture2D" uid="uid://bxbnrdtws8fow" path="res://Assets/Textures/KenneyTestTextures/Orange/texture_01.png" id="3_dd446"]
 
@@ -14,12 +14,12 @@ texture_filter = 1
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_v0v3b"]
 
-[sub_resource type="Sky" id="Sky_e48b7"]
+[sub_resource type="Sky" id="Sky_su7op"]
 sky_material = SubResource("PhysicalSkyMaterial_v0v3b")
 
 [sub_resource type="Environment" id="Environment_7pint"]
 background_mode = 2
-sky = SubResource("Sky_e48b7")
+sky = SubResource("Sky_su7op")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0394
 

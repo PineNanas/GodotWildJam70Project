@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dieou56o08txp"]
+[gd_scene load_steps=13 format=3 uid="uid://bmsesnj5mmijy"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Player/MainPlayer.gd" id="1_dqk6w"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Pixel3DShader.gdshader" id="2_cpuhc"]
@@ -35,11 +35,6 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_wkexs")
 }
-
-[sub_resource type="Animation" id="Animation_lfair"]
-resource_name = "walk"
-length = 1.756
-loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_3ia71"]
 resource_name = "crunch"
@@ -86,6 +81,11 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0.00349066), Vector3(0, 0, -0.00349066)]
 }
+
+[sub_resource type="Animation" id="Animation_lfair"]
+resource_name = "walk"
+length = 1.756
+loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_euv03"]
 _data = {

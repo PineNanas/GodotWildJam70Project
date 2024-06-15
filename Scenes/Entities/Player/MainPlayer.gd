@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name MainPlayer
 
 #CONFIGURATIONS
 @export_category("Player")
