@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwkuwcl33jn1r"]
+
+[ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="1_2gyu5"]
+[ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_vbv0v"]
+[ext_resource type="Texture2D" uid="uid://bxbnrdtws8fow" path="res://Assets/Textures/KenneyTestTextures/Orange/texture_01.png" id="3_dd446"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm47x"]
+shading_mode = 0
+albedo_color = Color(0.32549, 0.32549, 0.32549, 1)
+albedo_texture = ExtResource("2_vbv0v")
+uv1_scale = Vector3(4.615, 4.615, 4.615)
+uv1_triplanar = true
+texture_filter = 1
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_v0v3b"]
+
+[sub_resource type="Sky" id="Sky_e48b7"]
+sky_material = SubResource("PhysicalSkyMaterial_v0v3b")
+
+[sub_resource type="Environment" id="Environment_7pint"]
+background_mode = 2
+sky = SubResource("Sky_e48b7")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0394
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77k24"]
+shading_mode = 0
+albedo_texture = ExtResource("3_dd446")
+uv1_scale = Vector3(2.27, 2.27, 2.27)
+uv1_triplanar = true
+
+[sub_resource type="FogMaterial" id="FogMaterial_pcdux"]
+density = 1.532
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="MainPlayer" parent="." instance=ExtResource("1_2gyu5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74891, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(86.0495, 0, 0, 0, 25.2851, 0, 0, 0, 86.0495, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cm47x")
+use_collision = true
+collision_layer = 8
+size = Vector3(1, 0.124756, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7pint")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.956279, -0.292455, 1.08948e-09, -0.013955, -0.0456304, 0.998861, -0.292122, -0.95519, -0.0477167, 0, 9.37987, 0)
+
+[node name="Object" type="Node3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14114, 4.39096, 2.88502)
+layers = 8
+material_override = SubResource("StandardMaterial3D_77k24")
+use_collision = true
+collision_layer = 8
+size = Vector3(4.46712, 2.64935, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500244, 0.931032, -9.65055)
+layers = 8
+material_override = SubResource("StandardMaterial3D_77k24")
+use_collision = true
+collision_layer = 8
+size = Vector3(3.53253, 1.73718, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58822, 1.00368, -7.23895)
+layers = 8
+material_override = SubResource("StandardMaterial3D_77k24")
+use_collision = true
+collision_layer = 8
+size = Vector3(3.53253, 1.73718, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Object"]
+transform = Transform3D(1, 0, 0, 0, 0.504196, 0.863589, 0, -0.863589, 0.504196, -7.23818, 3.13141, -8.57234)
+layers = 8
+material_override = SubResource("StandardMaterial3D_77k24")
+use_collision = true
+collision_layer = 8
+size = Vector3(3.53253, 8.04718, 1)
+
+[node name="FogVolume" type="FogVolume" parent="Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.8897, 0.473091, -1)
+size = Vector3(2, 18.5069, 88.0611)
+material = SubResource("FogMaterial_pcdux")
+
+[node name="FogVolume3" type="FogVolume" parent="Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4736, 0.473091, -1)
+size = Vector3(2, 18.5069, 88.0611)
+material = SubResource("FogMaterial_pcdux")
+
+[node name="FogVolume2" type="FogVolume" parent="Object"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.4691, 0.473091, -40.542)
+size = Vector3(2, 18.99, 129.02)
+material = SubResource("FogMaterial_pcdux")
+
+[node name="FogVolume4" type="FogVolume" parent="Object"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.4691, 0.473091, 37.1527)
+size = Vector3(2, 18.99, 129.02)
+material = SubResource("FogMaterial_pcdux")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Object"]
+use_collision = true
+collision_layer = 8
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
+transform = Transform3D(4.34871, 0, 0, 0, -3.78088e-07, -5.31608, 0, 8.64964, -2.32373e-07, 7.04242, 2.90623, 4.09706)
+use_collision = true
+collision_layer = 8
+sides = 13
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
+transform = Transform3D(3.74806, 0, 0, 0, -3.90883e-07, -4.58182, 0, 8.94237, -2.00278e-07, 7.04242, 2.90623, 3.98595)
+operation = 2
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
+transform = Transform3D(2.96809, -6.32172, 1.69833e-07, 0, -3.78088e-07, -5.31608, 3.17832, 5.90356, -1.586e-07, 14.1597, 2.90623, -11.8677)
+use_collision = true
+collision_layer = 8
+sides = 13
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
+transform = Transform3D(2.45913, -6.50406, 1.46376e-07, 0, -3.88993e-07, -4.58182, 2.63331, 6.07384, -1.36694e-07, 14.2409, 2.90623, -11.9435)
+operation = 2
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
+transform = Transform3D(3.74014, -0.481831, 1.18556e-07, 0, -4.12811e-08, -5.31608, 2.2187, 0.812238, -1.99854e-07, 7.28631, 2.90623, -5.23456)
+use_collision = true
+collision_layer = 8
+sides = 13
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
+transform = Transform3D(3.09879, -0.495728, 1.02181e-07, 0, -4.24717e-08, -4.58182, 1.83825, 0.835665, -1.7225e-07, 7.36038, 2.90623, -5.20025)
+operation = 2
