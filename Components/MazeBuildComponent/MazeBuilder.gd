@@ -12,12 +12,16 @@ var last_turn := 0
 
 @export_range(0.0,100.0,0.5) var turn_percentaje
 
+@export var segments_base_size := 1.0
+
 @export_category("Nodes")
+
+
 @onready var combiner_content = $CombinerContent
 
-@export var rect_pipe : CSGCylinder3D
+@export var rect_segment : Node3D
 
-@onready var last_pipe : CSGCylinder3D = rect_pipe
+@onready var last_segment : Node3D = rect_segment
 
 var branch_dir := 0
 var intersetion_angles := [25,45,90]
@@ -45,77 +49,81 @@ func _input(event):
 		erase_map()
 		generate_maze(randi_range(5,15))
 
+
+
+
 func generate_maze(_amount:int):
 	
 	var rect_turn_count := 0
 	
-	for x in _amount :
+	for x in _amount:
 		
 		var fix_angle := 0
 		
 		#fix_angle = verify_wall_collition()
 		
-		#await get_tree().create_timer(2.0).timeout
 		
-		var is_turn := false
-		
-		if randi_range(0,100) < 2:
-			var aux_last_pipe = last_pipe
-			
-			turn = 1
+		#var is_turn := false
+		#
+		#if randi_range(0,100) < 2:
+			#var aux_last_pipe = last_pipe
 			#
-			generate_brach(randi_range(1,5))
-			await "branch_created"
-			last_pipe = aux_last_pipe
+			#turn = 1
+			##
+			#generate_brach(randi_range(1,5))
+			#await "branch_created"
+			#last_pipe = aux_last_pipe
 
 		
-		if turn:
-			if randf_range(0.0,100.0) <= turn_percentaje:
-				is_turn = true
-			
-		else:
-			rect_turn_count += 1
+		#if turn:
+			#if randf_range(0.0,100.0) <= turn_percentaje:
+				#is_turn = true
+			#
+		#else:
+			#rect_turn_count += 1
+		#
+		#if rect_turn_count >= 2:
+			#if randf_range(0.0,100.0) <= 70:
+				#is_turn = true
 		
-		if rect_turn_count >= 2:
-			if randf_range(0.0,100.0) <= 70:
-				is_turn = true
 		
-		
-		var new_pipe = rect_pipe.duplicate() as CSGCylinder3D
-		
-
-		
-		new_pipe.position = last_pipe.position
-		
-		#new_pipe.height += randf_range(1.0,12.0)
-		new_pipe.get_child(0).height = new_pipe.height + 0.1
-		
+		var new_segment = rect_segment.duplicate() as Node3D
 		
 
 		
-		if is_turn:
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.radius))
-			if branch_dir == 0:
-				
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + -turn * intersetion_angles.pick_random()
-				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 2) + new_pipe.radius)
-			else:
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + branch_dir * randf_range(45.0,45.0)
-				branch_dir = 0
-				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 1.7) + new_pipe.radius)
-			
-			is_turn = false
-			
-		else:
-			
-			new_pipe.rotation = last_pipe.rotation
-			
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.height / 2))
-		randomize_next_direction()
-		combiner_content.add_child(new_pipe)
-		try_create_room(new_pipe)
+		new_segment.position = last_segment.position
 		
-		last_pipe = new_pipe
+		#new_segment.height += randf_range(1.0,12.0)
+		new_segment.get_child(0).height = new_segment.height + 0.1
+		
+		
+
+		
+		#if is_turn:
+			#new_segment.position += last_segment.transform.basis.y * ((last_segment.height / 2) + (new_segment.radius))
+			#if branch_dir == 0:
+				#
+				#new_segment.rotation_degrees.y = last_segment.rotation_degrees.y + -turn * intersetion_angles.pick_random()
+				#new_segment.position += new_segment.transform.basis.y * ((new_segment.height / 2) + new_segment.radius)
+			#else:
+				#new_segment.rotation_degrees.y = last_segment.rotation_degrees.y + branch_dir * randf_range(45.0,45.0)
+				#branch_dir = 0
+				#new_segment.position += new_segment.transform.basis.y * ((new_segment.height / 1.7) + new_segment.radius)
+			#
+			#is_turn = false
+			#
+		#else:
+			
+		new_segment.rotation = last_segment.rotation
+		
+		new_segment.position += last_segment.transform.basis.y * ((last_segment.height / 2) + (new_segment.height / 2))
+		
+		#randomize_next_direction()
+		
+		combiner_content.add_child(new_segment)
+		#try_create_room(new_segment)
+		
+		last_segment = new_segment
 		
 
 func generate_brach(_amount:int):
@@ -143,7 +151,7 @@ func generate_brach(_amount:int):
 		
 
 		
-		new_pipe.position = last_pipe.position
+		new_pipe.position = last_segment.position
 		
 		new_pipe.get_child(0).height = new_pipe.height + 0.1
 		
@@ -153,15 +161,15 @@ func generate_brach(_amount:int):
 			
 		if is_turn:
 
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.radius))
+			new_pipe.position += last_segment.transform.basis.y * ((last_segment.height / 2) + (new_pipe.radius))
 			
 			if first:
 				branch_dir = turn
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + -turn * (randf_range(45.0,45.0))
+				new_pipe.rotation_degrees.y = last_segment.rotation_degrees.y + -turn * (randf_range(45.0,45.0))
 				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 1.7) + new_pipe.radius)
 				
 			else:
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + -turn * intersetion_angles.pick_random()
+				new_pipe.rotation_degrees.y = last_segment.rotation_degrees.y + -turn * intersetion_angles.pick_random()
 				
 			
 			
@@ -169,15 +177,15 @@ func generate_brach(_amount:int):
 			
 		else:
 			
-			new_pipe.rotation = last_pipe.rotation
+			new_pipe.rotation = last_segment.rotation
 			
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.height / 2))
+			new_pipe.position += last_segment.transform.basis.y * ((last_segment.height / 2) + (new_pipe.height / 2))
 			
 		#try_create_room(new_pipe)
 		randomize_next_direction()
 		combiner_content.add_child(new_pipe)
 		
-		last_pipe = new_pipe
+		last_segment = new_pipe
 
 func try_create_room(_pipe):
 	if not randi_range(0,200) <= 50: return
@@ -212,7 +220,7 @@ func try_create_room(_pipe):
 	combiner_content.add_child(new_hole_cyl)
 
 #func verify_wall_collition():
-	#%WallCollition.transform = last_pipe.transform
+	#%WallCollition.transform = last_segment.transform
 	#%WallCollition.position = last_pipe.position
 	#%WallCollition.position += last_pipe.transform.basis.y * (last_pipe.height)
 	#

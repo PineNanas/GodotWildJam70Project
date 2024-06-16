@@ -1,14 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://74w7e3w7xul1"]
+[gd_scene load_steps=12 format=3 uid="uid://74w7e3w7xul1"]
 
 [ext_resource type="Script" path="res://Components/MazeBuildComponent/MazeBuilder.gd" id="1_3jpl1"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_nimll"]
 [ext_resource type="Texture2D" uid="uid://bvav08cexnyyi" path="res://Assets/Textures/KenneyTestTextures/Orange/texture_04.png" id="2_qs1px"]
 [ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="3_dashv"]
+[ext_resource type="ArrayMesh" uid="uid://c6kleeqmf4l56" path="res://Assets/Models/Building/Walls/Wall_1.obj" id="4_8orqx"]
+[ext_resource type="Texture2D" uid="uid://o6ran133r50f" path="res://Assets/Textures/DefaultMaterial_BaseColor.png" id="4_xj8qk"]
+[ext_resource type="ArrayMesh" uid="uid://dgxaku4b3gb27" path="res://Assets/Models/Building/Floors/Floor_3x4.obj" id="5_qjscy"]
+[ext_resource type="ArrayMesh" uid="uid://c0bly63j5oxoe" path="res://Assets/Models/Building/Ceilings/Ceiling_1.obj" id="6_h1dal"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6ewn"]
 shading_mode = 0
 albedo_texture = ExtResource("2_qs1px")
 uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4i22"]
+shading_mode = 0
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+albedo_texture = ExtResource("4_xj8qk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk0b0"]
 shading_mode = 0
@@ -18,30 +27,40 @@ uv1_scale = Vector3(4.615, 4.615, 4.615)
 uv1_triplanar = true
 texture_filter = 1
 
-[node name="MazeBuilder" type="Node3D" node_paths=PackedStringArray("rect_pipe")]
+[node name="MazeBuilder" type="Node3D"]
 script = ExtResource("1_3jpl1")
 turn = 1.0
 turn_percentaje = 50.0
-rect_pipe = NodePath("CombinerContent/RectPipe")
+segments_base_size = null
 
 [node name="CombinerContent" type="CSGCombiner3D" parent="."]
 material_override = SubResource("StandardMaterial3D_o6ewn")
 use_collision = true
 collision_layer = 8
 
-[node name="RectPipe" type="CSGCylinder3D" parent="CombinerContent"]
-unique_name_in_owner = true
-transform = Transform3D(0.999502, 2.17852e-11, -0.0315676, -0.0315676, 1.37986e-09, -0.999502, 2.17852e-11, 1, 1.37986e-09, 0, 0, 0)
-radius = 3.0
-height = 15.0
+[node name="RectSegment" type="Node3D" parent="CombinerContent"]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CombinerContent/RectPipe"]
-transform = Transform3D(0.907219, 4.05558e-09, 0.420659, 4.05559e-09, 1, -1.83876e-08, -0.420659, 1.83876e-08, 0.907219, 0, 0, 0)
-operation = 2
-use_collision = true
-collision_layer = 8
-radius = 2.5
-height = 15.1
+[node name="RightWall" type="MeshInstance3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -2.29, 0)
+material_override = SubResource("StandardMaterial3D_r4i22")
+mesh = ExtResource("4_8orqx")
+skeleton = NodePath("../../..")
+
+[node name="LeftWall" type="MeshInstance3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2.29, 0)
+material_override = SubResource("StandardMaterial3D_r4i22")
+mesh = ExtResource("4_8orqx")
+skeleton = NodePath("../../..")
+
+[node name="Floor3x4" type="MeshInstance3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -2.283, 0)
+mesh = ExtResource("5_qjscy")
+skeleton = NodePath("../../..")
+
+[node name="Ceiling1" type="MeshInstance3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, -2.301, 0)
+mesh = ExtResource("6_h1dal")
+skeleton = NodePath("../../..")
 
 [node name="WallCollition" type="RayCast3D" parent="CombinerContent"]
 unique_name_in_owner = true
@@ -64,6 +83,7 @@ size = 563.352
 [node name="Room" type="CSGBox3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5856, 0)
+visible = false
 size = Vector3(14.4197, 10.2686, 13.2354)
 
 [node name="CoverCyl" type="CSGCylinder3D" parent="."]
@@ -81,4 +101,19 @@ operation = 2
 radius = 2.535
 height = 7.315
 
+[node name="RectPipe" type="CSGCylinder3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.999502, 2.17852e-11, -0.0315676, -0.0315676, 1.37986e-09, -0.999502, 2.17852e-11, 1, 1.37986e-09, 0, 0, 0)
+radius = 3.0
+height = 15.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="RectPipe"]
+transform = Transform3D(0.907219, 4.05558e-09, 0.420659, 4.05559e-09, 1, -1.83876e-08, -0.420659, 1.83876e-08, 0.907219, 0, 0, 0)
+operation = 2
+use_collision = true
+collision_layer = 8
+radius = 2.5
+height = 15.1
+
 [node name="MainPlayer" parent="." instance=ExtResource("3_dashv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.31635, 0)

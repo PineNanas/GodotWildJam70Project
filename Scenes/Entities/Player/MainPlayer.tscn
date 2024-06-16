@@ -114,7 +114,7 @@ script = ExtResource("2_ykeem")
 
 [node name="PlayerCamera" type="Camera3D" parent="Cameracontent"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95996, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
 current = true
 fov = 70.0
 
