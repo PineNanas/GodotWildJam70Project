@@ -65,7 +65,6 @@ func crunch():
 	bobbing_speed = 9.0
 
 func idle():
-	print("A")
 	bobbing_amount = 0.01
 	bobbing_speed = 2.0
 

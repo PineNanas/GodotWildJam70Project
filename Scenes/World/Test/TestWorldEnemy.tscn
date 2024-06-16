@@ -30,7 +30,7 @@ uv1_triplanar = true
 texture_filter = 1
 
 [node name="TestWorldEnemy" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61741, 1.27181, 4.04913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6225, 1.30128, 4.08968)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.956279, -0.292455, 3.32724e-08, -0.013955, -0.0456304, 0.998861, -0.292122, -0.95519, -0.0477166, 0, 25.543, 0)
@@ -55,7 +55,7 @@ transform = Transform3D(85.8587, 0, 0, 0, 3.20194, 0, 0, 0, 85.8587, -0.0111465,
 material_override = SubResource("StandardMaterial3D_scnwf")
 use_collision = true
 collision_layer = 8
-collision_mask = 17
+collision_mask = 3
 collision_priority = 10.0
 size = Vector3(1, 0.124756, 1)
 
