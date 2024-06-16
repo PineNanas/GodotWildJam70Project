@@ -18,9 +18,15 @@ class_name Enemy
 @export var speed:float = 10.0
 @export var stop_distance:float = 2.0
 @export var chase_distance:float = 10.0
+@export var patrol: bool = false
+@export var patrol_points: Array[Patrol_Point] = []
+
 
 @onready var player: MainPlayer
 
+@onready var is_patroling: bool = false
+@onready var partrol_point_index = 0
+var target_patrol_point:Patrol_Point
 @onready var is_chasing: bool = false
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
@@ -32,6 +38,10 @@ class_name Enemy
 func _ready() -> void:
 	player = get_tree().current_scene.get_node("MainPlayer")
 	chase_area_collision.shape.radius = chase_distance
+	if patrol:
+		target_patrol_point = patrol_points[0]
+		is_patroling = true
+		target_patrol_point.body_entered.connect(_on_patrol_point_entered)
 
 func _physics_process(delta: float) -> void:
 	if is_death:
@@ -67,8 +77,21 @@ func _on_timer_timeout() -> void:
 	if is_chasing:
 		navigation_agent_3d.target_position = player.global_position
 		navigation_agent_3d.target_position = navigation_agent_3d.get_final_position()
+	elif is_patroling:
+		navigation_agent_3d.target_position = target_patrol_point.global_position
+		navigation_agent_3d.target_position = navigation_agent_3d.get_final_position()
 	else:
 		pass
 
 func _on_chase_timer_timeout() -> void:
 	is_chasing = false
+
+func _on_patrol_point_entered(body: Node3D) -> void:
+	if body == self:
+		if is_patroling:
+			partrol_point_index += 1
+			if partrol_point_index >= patrol_points.size():
+				partrol_point_index = 0
+			target_patrol_point.body_entered.disconnect(_on_patrol_point_entered)
+			target_patrol_point = patrol_points[partrol_point_index]
+			target_patrol_point.body_entered.connect(_on_patrol_point_entered)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://wygekfevvnvx"]
+
+[ext_resource type="Script" path="res://Scenes/Entities/Enemies/PatrolPoint.gd" id="1_tvvpr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bmnrm"]
+radius = 1.5
+
+[node name="PatrolPoint" type="Area3D"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("1_tvvpr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00275326, 0.506593, -0.00298834)
+shape = SubResource("CylinderShape3D_bmnrm")
