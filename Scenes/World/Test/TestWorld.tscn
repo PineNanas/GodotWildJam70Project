@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwkuwcl33jn1r"]
+[gd_scene load_steps=12 format=3 uid="uid://cwkuwcl33jn1r"]
 
 [ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="1_2gyu5"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_vbv0v"]
 [ext_resource type="Texture2D" uid="uid://bxbnrdtws8fow" path="res://Assets/Textures/KenneyTestTextures/Orange/texture_01.png" id="3_dd446"]
+[ext_resource type="ArrayMesh" uid="uid://c53eyrxdujjd5" path="res://Assets/Models/WorldObjects/Frence.obj" id="4_ki7vn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm47x"]
 shading_mode = 0
@@ -31,6 +32,9 @@ uv1_triplanar = true
 
 [sub_resource type="FogMaterial" id="FogMaterial_pcdux"]
 density = 1.532
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1nbwn"]
+size = Vector3(16.3752, 17.5998, 1)
 
 [node name="TestWorld" type="Node3D"]
 
@@ -137,3 +141,197 @@ sides = 13
 [node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Object/CSGCombiner3D"]
 transform = Transform3D(3.09879, -0.495728, 1.02181e-07, 0, -4.24717e-08, -4.58182, 1.83825, 0.835665, -1.7225e-07, 7.36038, 2.90623, -5.20025)
 operation = 2
+
+[node name="Frences" type="Node3D" parent="Object"]
+
+[node name="Frence" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -2.46053, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence3" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 3.60214, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence3"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence3/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence2" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 0.500985, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence2"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence2/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence4" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 6.57399, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence4"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence4/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence5" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 9.63515, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence5"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence5/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence6" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 15.6978, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence6"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence6/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence7" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 12.5967, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence7"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence7/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence8" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 18.6697, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence8"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence8/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence9" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -26.6694, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence9"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence9/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence10" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -20.6067, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence10"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence10/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence11" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -23.7079, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence11"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence11/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence12" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -17.6348, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence12"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence12/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence13" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -14.5737, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence13"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence13/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence14" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -8.51101, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence14"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence14/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence15" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -11.6122, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence15"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence15/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")
+
+[node name="Frence16" type="MeshInstance3D" parent="Object/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -5.53917, 2.43367, 26.4448)
+mesh = ExtResource("4_ki7vn")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Object/Frences/Frence16"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Object/Frences/Frence16/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1nbwn")

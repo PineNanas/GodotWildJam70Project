@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://74w7e3w7xul1"]
+
+[ext_resource type="Script" path="res://Components/MazeBuildComponent/MazeBuilder.gd" id="1_3jpl1"]
+[ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_nimll"]
+[ext_resource type="Texture2D" uid="uid://bvav08cexnyyi" path="res://Assets/Textures/KenneyTestTextures/Orange/texture_04.png" id="2_qs1px"]
+[ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="3_dashv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6ewn"]
+shading_mode = 0
+albedo_texture = ExtResource("2_qs1px")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk0b0"]
+shading_mode = 0
+albedo_color = Color(0.32549, 0.32549, 0.32549, 1)
+albedo_texture = ExtResource("2_nimll")
+uv1_scale = Vector3(4.615, 4.615, 4.615)
+uv1_triplanar = true
+texture_filter = 1
+
+[node name="MazeBuilder" type="Node3D" node_paths=PackedStringArray("rect_pipe")]
+script = ExtResource("1_3jpl1")
+turn = 1.0
+turn_percentaje = 50.0
+rect_pipe = NodePath("CombinerContent/RectPipe")
+
+[node name="CombinerContent" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_o6ewn")
+use_collision = true
+collision_layer = 8
+
+[node name="RectPipe" type="CSGCylinder3D" parent="CombinerContent"]
+unique_name_in_owner = true
+transform = Transform3D(0.999502, 2.17852e-11, -0.0315676, -0.0315676, 1.37986e-09, -0.999502, 2.17852e-11, 1, 1.37986e-09, 0, 0, 0)
+radius = 3.0
+height = 15.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CombinerContent/RectPipe"]
+transform = Transform3D(0.907219, 4.05558e-09, 0.420659, 4.05559e-09, 1, -1.83876e-08, -0.420659, 1.83876e-08, 0.907219, 0, 0, 0)
+operation = 2
+use_collision = true
+collision_layer = 8
+radius = 2.5
+height = 15.1
+
+[node name="WallCollition" type="RayCast3D" parent="CombinerContent"]
+unique_name_in_owner = true
+transform = Transform3D(0.999507, -2.15685e-11, -0.0314107, -0.0314107, -1.37301e-09, -0.999507, -2.15685e-11, 1, -1.37301e-09, 0, 0, 0)
+target_position = Vector3(0, 10, 0)
+collision_mask = 8
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(462.773, 0, 0, 0, 25.2851, 0, 0, 0, 491.47, 0, -3.875, 0)
+material_override = SubResource("StandardMaterial3D_fk0b0")
+use_collision = true
+collision_layer = 8
+size = Vector3(1, 0.124756, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 302.034, 5.85891)
+projection = 1
+size = 563.352
+
+[node name="Room" type="CSGBox3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5856, 0)
+size = Vector3(14.4197, 10.2686, 13.2354)
+
+[node name="CoverCyl" type="CSGCylinder3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 10.8939, 0)
+visible = false
+radius = 3.0
+height = 7.315
+
+[node name="Hole" type="CSGCylinder3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 10.8939, 0)
+visible = false
+operation = 2
+radius = 2.535
+height = 7.315
+
+[node name="MainPlayer" parent="." instance=ExtResource("3_dashv")]

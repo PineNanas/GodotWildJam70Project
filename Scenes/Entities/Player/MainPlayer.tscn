@@ -115,6 +115,7 @@ script = ExtResource("2_ykeem")
 [node name="PlayerCamera" type="Camera3D" parent="Cameracontent"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95996, 0)
+current = true
 fov = 70.0
 
 [node name="CameraContentAnimation" type="AnimationPlayer" parent="Cameracontent/PlayerCamera"]
@@ -130,6 +131,15 @@ speed_scale = 3.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174893)
 mesh = SubResource("QuadMesh_2auo3")
 surface_material_override/0 = SubResource("ShaderMaterial_rfglt")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cameracontent/PlayerCamera"]
+transform = Transform3D(0.333772, -0.757802, 0, 0.757802, 0.333772, 0, 0, 0, 0.82805, 0.00120002, -0.338465, -0.547195)
+radius = 0.026
+height = 1.11101
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Cameracontent/PlayerCamera/CSGCylinder3D"]
+transform = Transform3D(1.01553, 8.9407e-08, 0, -8.9407e-08, 1.01553, 0, 0, 0, 0.0248154, -0.541017, -0.351137, 0.0229424)
+polygon = PackedVector2Array(0.702289, 0.730047, 0.652653, 0.76111, 0.551032, 0.789292, 0.490303, 0.784716, 0.408449, 0.76734, 0.368219, 0.762533, 0.464087, 0.980519, 0.59631, 1.05982, 0.56696, 1.01292, 0.611857, 1.03083, 0.670633, 0.920018)
 
 [node name="PlayerColl" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

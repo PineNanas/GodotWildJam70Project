@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c53eyrxdujjd5"
+path="res://.godot/imported/Frence.obj-b078c4b187c131cbb09a82cd5d2c2883.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Frence.obj-b078c4b187c131cbb09a82cd5d2c2883.mesh"]
+
+source_file="res://Assets/Models/WorldObjects/Frence.obj"
+dest_files=["res://.godot/imported/Frence.obj-b078c4b187c131cbb09a82cd5d2c2883.mesh", "res://.godot/imported/Frence.obj-b078c4b187c131cbb09a82cd5d2c2883.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
