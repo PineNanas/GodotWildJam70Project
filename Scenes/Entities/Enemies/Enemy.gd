@@ -17,17 +17,21 @@ class_name Enemy
 @export var is_death:bool = false
 @export var speed:float = 10.0
 @export var stop_distance:float = 2.0
-
+@export var chase_distance:float = 10.0
 
 @onready var player: MainPlayer
 
+@onready var is_chasing: bool = false
+
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var character_rotation_root: Node3D = $CharacterRotationRoot
+@onready var chase_area_collision: CollisionShape3D = $ChaseArea/ChaseAreaCollision
+@onready var chase_timer: Timer = $ChaseTimer
 # @onready var enemy_skin: EnemySkin = $CharacterRotationRoot/EnemySkin
-
 
 func _ready() -> void:
 	player = get_tree().current_scene.get_node("MainPlayer")
+	chase_area_collision.shape.radius = chase_distance
 
 func _physics_process(delta: float) -> void:
 	if is_death:
@@ -36,8 +40,6 @@ func _physics_process(delta: float) -> void:
 	velocity = direction_3d * speed
 	if navigation_agent_3d.distance_to_target() > stop_distance:
 		# enemy_skin.is_moving = true
-		if is_on_floor():
-			velocity.y = 0
 		move_and_slide()
 	else:
 		# enemy_skin.is_moving = false
@@ -45,12 +47,6 @@ func _physics_process(delta: float) -> void:
 	var direction_2d := Vector2(direction_3d.z, direction_3d.x)
 	var target_quaternion:Quaternion = Quaternion.from_euler(Vector3(0, direction_2d.angle(),0))
 	character_rotation_root.quaternion = character_rotation_root.quaternion.slerp(target_quaternion, delta * 10)
-
-
-func _on_timer_timeout() -> void:
-	print("timer")
-	navigation_agent_3d.target_position = player.global_position
-	navigation_agent_3d.target_position = navigation_agent_3d.get_final_position()
 
 func take_damage(damage:int) -> void:
 	print("damaged",damage)
@@ -60,3 +56,19 @@ func enemy_death() -> void:
 	# enemy_skin.death()
 	await  get_tree().create_timer(3).timeout
 	queue_free()
+
+
+func _on_chase_area_body_entered(body: Node3D) -> void:
+	if body is MainPlayer:
+		is_chasing = true
+		chase_timer.start()
+
+func _on_timer_timeout() -> void:
+	if is_chasing:
+		navigation_agent_3d.target_position = player.global_position
+		navigation_agent_3d.target_position = navigation_agent_3d.get_final_position()
+	else:
+		pass
+
+func _on_chase_timer_timeout() -> void:
+	is_chasing = false

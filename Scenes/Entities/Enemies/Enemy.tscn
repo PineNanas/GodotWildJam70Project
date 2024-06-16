@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx3qfruay7dkh"]
+[gd_scene load_steps=5 format=3 uid="uid://cx3qfruay7dkh"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Enemies/Enemy.gd" id="1_g8vkj"]
 
@@ -6,15 +6,22 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8bh4s"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s05yw"]
+height = 6.0
+radius = 10.0
+
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 8
 script = ExtResource("1_g8vkj")
+speed = 6.0
+chase_distance = 6.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.27415, 0, 0, 0, 1, 0, 0.0343226, 0)
+transform = Transform3D(1.08833, 0, 0, 0, 1.8, 0, 0, 0, 0.994925, -0.000880957, 1.10771, -0.000947952)
 shape = SubResource("BoxShape3D_8lvwi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03603, 0)
 mesh = SubResource("CapsuleMesh_8bh4s")
 skeleton = NodePath("../CollisionShape3D")
 
@@ -28,4 +35,17 @@ height = 3.0
 wait_time = 0.1
 autostart = true
 
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ChaseArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00307274, 0.00446892, -0.00280571)
+
+[node name="ChaseAreaCollision" type="CollisionShape3D" parent="ChaseArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_s05yw")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]

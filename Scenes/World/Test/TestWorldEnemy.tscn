@@ -16,7 +16,7 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0394
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_027mb"]
-vertices = PackedVector3Array(-42.5359, 1.92276, -42.3934, -42.5359, 1.92276, 42.6066, 42.4641, 1.92276, 42.6066, 42.4641, 1.92276, -42.3934)
+vertices = PackedVector3Array(-42.4405, 74.6813, -42.298, -42.4405, 74.6813, 42.452, 42.3095, 74.6813, 42.452, 42.3095, 74.6813, -42.298)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 agent_height = 2.5
 
@@ -41,13 +41,14 @@ environment = SubResource("Environment_yj760")
 transform = Transform3D(0.146584, 0, -0.989198, 0, 1, 0, 0.989198, 0, 0.146584, 0, 5.05244, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("3_wodgw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0112, 5.3047, -0.0335493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5851, 4.89719, -1.22154)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120239, -70.3294, 0.044548)
 navigation_mesh = SubResource("NavigationMesh_027mb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(85.8587, 0, 0, 0, 25.229, 0, 0, 0, 85.8587, -0.0111465, -3.8147e-06, 0.13133)
+transform = Transform3D(85.8587, 0, 0, 0, 3.20194, 0, 0, 0, 85.8587, -0.0111465, 74.131, 0.13133)
 material_override = SubResource("StandardMaterial3D_scnwf")
 use_collision = true
 collision_layer = 8
