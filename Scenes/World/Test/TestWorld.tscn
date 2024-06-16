@@ -15,12 +15,12 @@ texture_filter = 1
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_v0v3b"]
 
-[sub_resource type="Sky" id="Sky_e48b7"]
+[sub_resource type="Sky" id="Sky_3vaqx"]
 sky_material = SubResource("PhysicalSkyMaterial_v0v3b")
 
 [sub_resource type="Environment" id="Environment_7pint"]
 background_mode = 2
-sky = SubResource("Sky_e48b7")
+sky = SubResource("Sky_3vaqx")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0394
 

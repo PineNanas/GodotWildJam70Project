@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cstl2xd77g1cb"
+path="res://.godot/imported/Ceiling_2.obj-7fc39509bb9e625720898507d5b893ef.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Ceiling_2.obj-7fc39509bb9e625720898507d5b893ef.mesh"]
+
+source_file="res://Assets/Models/Building/Ceilings/Ceiling_2.obj"
+dest_files=["res://.godot/imported/Ceiling_2.obj-7fc39509bb9e625720898507d5b893ef.mesh", "res://.godot/imported/Ceiling_2.obj-7fc39509bb9e625720898507d5b893ef.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

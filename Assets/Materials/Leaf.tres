@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://be1jefa18s2bf"]
+
+[ext_resource type="Texture2D" uid="uid://cunuo1wc0c4fn" path="res://Assets/Models/WorldObjects/White Spruce Color.png" id="1_vrb7r"]
+
+[resource]
+resource_name = "Leaf"
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_vrb7r")
+texture_filter = 2
