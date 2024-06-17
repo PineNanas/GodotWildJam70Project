@@ -1,14 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx3qfruay7dkh"]
+[gd_scene load_steps=5 format=3 uid="uid://cx3qfruay7dkh"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Enemies/Enemy.gd" id="1_g8vkj"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8lvwi"]
-size = Vector3(1, 2, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8bh4s"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_kupg4"]
-size = Vector3(1, 0.2, 0.2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s05yw"]
 height = 6.0
@@ -16,6 +8,9 @@ radius = 10.0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_63dox"]
 points = PackedVector3Array(0, 2, 1, 0, 2, -1, 0, 0, 1, 0, 0, -1, 30, 0, 10, 30, 0, -10, 30, 10, 10, 30, 10, -10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8lvwi"]
+size = Vector3(1, 2, 1)
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 2
@@ -25,33 +20,7 @@ speed = 6.0
 stop_distance = 0.1
 chase_distance = 6.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000880957, 1.10771, -0.000947952)
-shape = SubResource("BoxShape3D_8lvwi")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
-height = 3.0
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
-[node name="ChaseTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
 [node name="CharacterRotationRoot" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterRotationRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03603, 0)
-mesh = SubResource("CapsuleMesh_8bh4s")
-skeleton = NodePath("../../CollisionShape3D")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterRotationRoot"]
-transform = Transform3D(0.999781, 0.00686569, 0.0197471, 0.00708382, -0.999915, -0.0109973, 0.0196699, 0.0111348, -0.999745, 0.822481, 1.34331, 0.0129282)
-mesh = SubResource("BoxMesh_kupg4")
-skeleton = NodePath("../..")
 
 [node name="ChaseArea" type="Area3D" parent="CharacterRotationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00307274, 0.00446892, -0.00280571)
@@ -65,12 +34,28 @@ shape = SubResource("CylinderShape3D_s05yw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0125637, 0.0432596, -0.000516891)
 shape = SubResource("ConvexPolygonShape3D_63dox")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000880957, 1.10771, -0.000947952)
+shape = SubResource("BoxShape3D_8lvwi")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+height = 3.0
+
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 0, 0)
 collision_mask = 9
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
 [connection signal="body_entered" from="CharacterRotationRoot/ChaseArea" to="." method="_on_chase_area_body_entered"]
 [connection signal="body_exited" from="CharacterRotationRoot/ChaseArea" to="." method="_on_chase_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
