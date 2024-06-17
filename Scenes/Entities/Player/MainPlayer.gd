@@ -3,9 +3,9 @@ extends CharacterBody3D
 #CONFIGURATIONS
 @export_category("Player")
 @export_range(1, 1000, 1) var speed: float = 10 # m/s
-var run_speed := 10
+var run_speed := 4
 var crunch_speed = 2.0
-var slide_speed := 20
+var slide_speed := 9
 
 
 #MOVE SYSTEM
@@ -170,7 +170,7 @@ func _rotate_camera(sens_mod: float = 1.0) -> void:
 	rotation.y -= look_dir.x * camera_sens * sens_mod
 	player_camera.rotation.x = clamp(player_camera.rotation.x - look_dir.y * camera_sens * sens_mod, -1.5, 1.5)
 
-func modify_camera(_player_coll_pos=1.302,_player_coll_size=2.0,_player_camera_position=1.96,_player_camera_rotation:=0.0):
+func modify_camera(_player_coll_pos=1.302,_player_coll_size=2.0,_player_camera_position=1.45,_player_camera_rotation:=0.0):
 		#NORMAL CAMERA
 		%PlayerColl.position.y = _player_coll_pos
 		player_coll.size.y = _player_coll_size

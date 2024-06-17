@@ -1,17 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bratqsol2mbfu"]
+[gd_scene load_steps=13 format=3 uid="uid://bratqsol2mbfu"]
 
 [ext_resource type="ArrayMesh" uid="uid://c53eyrxdujjd5" path="res://Assets/Models/WorldObjects/Frence.obj" id="1_eh671"]
 [ext_resource type="Script" path="res://Scenes/World/OverWorld/OverworldScene.gd" id="1_jvafl"]
 [ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="2_d8w7f"]
 [ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_jxpkx"]
-[ext_resource type="Texture2D" uid="uid://o6ran133r50f" path="res://Assets/Textures/DefaultMaterial_BaseColor.png" id="5_ba5qb"]
-[ext_resource type="ArrayMesh" uid="uid://c6kleeqmf4l56" path="res://Assets/Models/Building/Walls/Wall_1.obj" id="5_ie6xb"]
-[ext_resource type="Texture2D" uid="uid://dt5yr7jfejq2b" path="res://Assets/Textures/Wall_01.png" id="5_sga5u"]
 [ext_resource type="PackedScene" uid="uid://cfcbrbleownhl" path="res://Assets/Models/WorldObjects/WhiteSpruce LFD V1.glb" id="5_x15ma"]
-[ext_resource type="ArrayMesh" uid="uid://prl0qotw2y3" path="res://Assets/Models/Building/Walls/Wall_90d_1.obj" id="9_skg52"]
-[ext_resource type="ArrayMesh" uid="uid://bfhe3na7dxso1" path="res://Assets/Models/Building/Walls/Wall_90d_2.obj" id="10_8vyp2"]
-[ext_resource type="ArrayMesh" uid="uid://d7pjxvx8eng2" path="res://Assets/Models/Building/Walls/Wall_45d.obj" id="11_al1xr"]
-[ext_resource type="ArrayMesh" uid="uid://bkeahxnhh041f" path="res://Assets/Models/Building/Walls/Wall_Doorway.obj" id="12_r840y"]
+[ext_resource type="AudioStream" uid="uid://b5gmj8s7e80ki" path="res://Assets/Audio/SFX/Enviroment/Outside Dungeon Ambience LFD Not Redux.mp3" id="6_isb76"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_38mpk"]
 size = Vector3(16.3752, 17.5998, 1)
@@ -26,16 +20,6 @@ shading_mode = 0
 albedo_texture = ExtResource("2_d8w7f")
 uv1_scale = Vector3(0.161, 0.161, 0.161)
 uv1_triplanar = true
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pm5dx"]
-shading_mode = 0
-albedo_texture = ExtResource("5_ba5qb")
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3awv"]
-shading_mode = 0
-albedo_texture = ExtResource("5_sga5u")
 texture_filter = 0
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_vc6vt"]
@@ -860,20 +844,9 @@ collision_layer = 8
 size = Vector3(265.15, 0.27124, 65.0586)
 material = SubResource("StandardMaterial3D_ob10q")
 
-[node name="Wall3" type="MeshInstance3D" parent="OverworldObjects"]
-transform = Transform3D(2.51661, 0, 0, 0, 2.51661, 0, 0, 0, 2.51661, 14.6131, -0.000158787, 1.57248)
-material_override = SubResource("StandardMaterial3D_pm5dx")
-mesh = ExtResource("5_ie6xb")
-skeleton = NodePath("../..")
-
-[node name="Wall4" type="MeshInstance3D" parent="OverworldObjects"]
-transform = Transform3D(2.51661, 0, 0, 0, 2.51661, 0, 0, 0, 2.51661, 14.6159, -0.000158787, -0.400818)
-material_override = SubResource("StandardMaterial3D_g3awv")
-mesh = ExtResource("5_ie6xb")
-skeleton = NodePath("../..")
-
 [node name="MainPlayer" parent="." instance=ExtResource("2_jxpkx")]
 transform = Transform3D(0.0412304, 0, -0.99915, 0, 1, 0, 0.99915, 0, 0.0412304, -36.611, 0.327995, 0)
+speed = 3.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mspac")
@@ -881,23 +854,8 @@ environment = SubResource("Environment_mspac")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.471018, -0.100269, -0.876406, 0.83235, -0.278493, 0.479203, -0.292122, -0.95519, -0.0477166, 0, 9.37987, 0)
 light_energy = 0.407
+light_volumetric_fog_energy = 2.695
 
-[node name="Wall90d1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4646, 0.135618, -11.1672)
-mesh = ExtResource("9_skg52")
-
-[node name="Wall90d2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4537, 0.135621, -7.92434)
-mesh = ExtResource("10_8vyp2")
-
-[node name="Wall1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6655, 0.13562, -6.93899)
-mesh = ExtResource("5_ie6xb")
-
-[node name="Wall45d" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.59112, 0.13562, -1.14536)
-mesh = ExtResource("11_al1xr")
-
-[node name="WallDoorway" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0574, 0.13562, 4.2391)
-mesh = ExtResource("12_r840y")
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_isb76")
+autoplay = true

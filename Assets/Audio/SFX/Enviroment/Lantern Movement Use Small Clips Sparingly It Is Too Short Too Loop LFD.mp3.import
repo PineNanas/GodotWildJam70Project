@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hnvl1os6wkhu"
+path="res://.godot/imported/Lantern Movement Use Small Clips Sparingly It Is Too Short Too Loop LFD.mp3-c6122a4779b4332ec8ed2602f71c6837.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Enviroment/Lantern Movement Use Small Clips Sparingly It Is Too Short Too Loop LFD.mp3"
+dest_files=["res://.godot/imported/Lantern Movement Use Small Clips Sparingly It Is Too Short Too Loop LFD.mp3-c6122a4779b4332ec8ed2602f71c6837.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

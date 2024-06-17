@@ -134,6 +134,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_rfglt")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cameracontent/PlayerCamera"]
 transform = Transform3D(0.333772, -0.757802, 0, 0.757802, 0.333772, 0, 0, 0, 0.82805, 0.00120002, -0.338465, -0.547195)
+visible = false
 radius = 0.026
 height = 1.11101
 
@@ -150,7 +151,7 @@ shape = SubResource("BoxShape3D_xxx22")
 
 [node name="SlideTime" type="Timer" parent="Timers"]
 unique_name_in_owner = true
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 
 [node name="Sfx" type="Node3D" parent="."]

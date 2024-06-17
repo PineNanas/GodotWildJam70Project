@@ -83,3 +83,4 @@ enter={
 2d_physics/layer_3="SFX"
 3d_physics/layer_4="StaticsBody"
 3d_physics/layer_12="WorldInteractArea"
+3d_physics/layer_20="HurtBoxComponent"

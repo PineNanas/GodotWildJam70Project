@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwioe4gk1nn05"
+path="res://.godot/imported/Lantern On Off Button LFD.mp3-9d1a0d13e236f68f8f79b3422f3e3ea2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Enviroment/Lantern On Off Button LFD.mp3"
+dest_files=["res://.godot/imported/Lantern On Off Button LFD.mp3-9d1a0d13e236f68f8f79b3422f3e3ea2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

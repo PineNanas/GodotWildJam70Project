@@ -15,7 +15,7 @@ func auto_config():
 
 func randomize_bushes():
 	
-	for x in randi_range(500,500):
+	for x in randi_range(600,600):
 		var new_brush = preloadded_bush.instantiate()
 		
 		new_brush.position.x = (randf_range(ground.size.x / 2,-ground.size.x / 2))
@@ -26,7 +26,7 @@ func randomize_bushes():
 		
 		%Brushes.add_child(new_brush)
 		
-	for x in randi_range(15,25):
+	for x in randi_range(25,45):
 		var new_tree = list_of_trees.pick_random().instantiate()
 		
 		new_tree.position.x = (randf_range(ground.size.x / 2,-ground.size.x / 2))
