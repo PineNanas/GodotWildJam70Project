@@ -12,7 +12,8 @@ var mouse_captured:= false
 
 func _ready():
 	basic_autoconfig()
-
+	pass
+	
 func save_new_map(_map):
 	maps.append(_map)
 	

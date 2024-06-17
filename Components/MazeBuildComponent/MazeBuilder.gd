@@ -7,23 +7,38 @@ signal branch_created
 @export_category("Maze Builder Options")
 
 ## -1 its left, 1.0 right
+@export_range(0.0,100.0,0.5) var turn_percentaje
 @export_range(-1.0,1.0,1.0) var turn
 var last_turn := 0
 
-@export_range(0.0,100.0,0.5) var turn_percentaje
+@export_range(0.0,100.0,0.5) var create_room_percentaje
+@export var room_edge := 1
+
+
+@export var segments_base_size := 1.0
+
+
 
 @export_category("Nodes")
+
+
 @onready var combiner_content = $CombinerContent
 
-@export var rect_pipe : CSGCylinder3D
+@export var rect_segment : Node3D
 
-@onready var last_pipe : CSGCylinder3D = rect_pipe
+@onready var last_segment : Node3D = rect_segment
+
+var its_forced_finished_maze := false
+
+var segmens_from_the_last_room := 0
 
 var branch_dir := 0
-var intersetion_angles := [25,45,90]
+#25,45,
+
+var intersetion_angles := [45,90]
 
 func _ready():
-	generate_maze(10)
+	generate_maze(randi_range(15,25))
 
 func _input(event):
 	if event.is_action_pressed("enter"):
@@ -45,185 +60,140 @@ func _input(event):
 		erase_map()
 		generate_maze(randi_range(5,15))
 
+
+
+
 func generate_maze(_amount:int):
 	
 	var rect_turn_count := 0
 	
-	for x in _amount :
-		
+	for x in _amount:
+		await get_tree().create_timer(0.1).timeout
 		var fix_angle := 0
 		
 		#fix_angle = verify_wall_collition()
 		
-		#await get_tree().create_timer(2.0).timeout
 		
-		var is_turn := false
 		
-		if randi_range(0,100) < 2:
-			var aux_last_pipe = last_pipe
-			
-			turn = 1
-			#
-			generate_brach(randi_range(1,5))
-			await "branch_created"
-			last_pipe = aux_last_pipe
+		#if randi_range(0,100) < 2:
 
+
+		var is_turn := false
 		
 		if turn:
 			if randf_range(0.0,100.0) <= turn_percentaje:
 				is_turn = true
-			
 		else:
 			rect_turn_count += 1
-		
-		if rect_turn_count >= 2:
+		if rect_turn_count >= 3:
 			if randf_range(0.0,100.0) <= 70:
 				is_turn = true
+			rect_turn_count = 0
 		
+		var new_segment = rect_segment.duplicate() as Node3D
+		if its_forced_finished_maze: return
 		
-		var new_pipe = rect_pipe.duplicate() as CSGCylinder3D
-		
-
-		
-		new_pipe.position = last_pipe.position
-		
-		#new_pipe.height += randf_range(1.0,12.0)
-		new_pipe.get_child(0).height = new_pipe.height + 0.1
-		
-		
-
-		
+		new_segment.position = last_segment.position
+		new_segment.visible = true
+	
+	
 		if is_turn:
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.radius))
+			new_segment.position += last_segment.transform.basis.z * segments_base_size
+			var new_corner : Node3D
+			var angle_for_corner = intersetion_angles.pick_random()
+			
 			if branch_dir == 0:
+
 				
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + -turn * intersetion_angles.pick_random()
-				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 2) + new_pipe.radius)
+				
+				if angle_for_corner == 90:
+					# New Segment Configuration
+					
+					new_segment.rotation_degrees.y = last_segment.rotation_degrees.y + -turn * angle_for_corner
+					new_segment.position += new_segment.transform.basis.z * (segments_base_size/2.705)
+					new_segment.position -= new_segment.transform.basis.x * (-turn * 1.5)
+					new_corner = %"90Angle".duplicate()
+					
+					new_corner.transform.basis = new_segment.transform.basis
+					new_corner.position = new_segment.position
+					new_corner.position += new_corner.transform.basis.x * (-turn * 0.015)
+
+					new_corner.position -= new_segment.transform.basis.z * (segments_base_size / 1.34)
+					
+				elif angle_for_corner == 45:
+					# New Segment Configuration
+					new_segment.rotation_degrees.y = last_segment.rotation_degrees.y + -turn * angle_for_corner
+					new_segment.position += new_segment.transform.basis.z * (segments_base_size/4)
+					new_segment.position -= new_segment.transform.basis.x * (-turn * 0.38)
+					
+					# Conrer Configuration
+					new_corner = %"45Angle".duplicate()
+
+					new_corner.transform.basis = last_segment.transform.basis
+					new_corner.position = last_segment.position
+					new_corner.position += new_corner.transform.basis.x * (turn * 0.01)
+
+					new_corner.position += new_corner.transform.basis.z * (segments_base_size)
+				
+				new_corner.scale.x = turn
+				new_corner.visible = true 
+				combiner_content.add_child(new_corner)
+				
 			else:
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + branch_dir * randf_range(45.0,45.0)
+				new_segment.rotation_degrees.y = last_segment.rotation_degrees.y + branch_dir * randf_range(90.0,90.0)
 				branch_dir = 0
-				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 1.7) + new_pipe.radius)
+				new_segment.position += new_segment.transform.basis.y * ((new_segment.height / 1.7) + new_segment.radius)
 			
 			is_turn = false
 			
 		else:
 			
-			new_pipe.rotation = last_pipe.rotation
+			new_segment.rotation = last_segment.rotation
 			
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.height / 2))
+			new_segment.position += last_segment.transform.basis.z * segments_base_size
+		
 		randomize_next_direction()
-		combiner_content.add_child(new_pipe)
-		try_create_room(new_pipe)
 		
-		last_pipe = new_pipe
+		combiner_content.add_child(new_segment)
+		if segmens_from_the_last_room != 0:
+			segmens_from_the_last_room += 1
+		if segmens_from_the_last_room == 4:
+			segmens_from_the_last_room = 0
 		
+		last_segment = new_segment
+		
+		if last_segment.is_in_group("rectsegment"):
+			try_create_room(new_segment)
+	if not its_forced_finished_maze:
+		create_final_door()
 
-func generate_brach(_amount:int):
-	
-	
-	var first := true
-	
-	
-	for x in _amount :
-		#verify_wall_collition()
-		
-		#await get_tree().create_timer(2.0)
-		
-		print("b")
-		
-		var is_turn := false
-		
-		
-		if turn:
-			if randf_range(0.0,100.0) <= turn_percentaje:
-				is_turn = true
-
-		
-		var new_pipe = rect_pipe.duplicate() as CSGCylinder3D
-		
-
-		
-		new_pipe.position = last_pipe.position
-		
-		new_pipe.get_child(0).height = new_pipe.height + 0.1
-		
-		
-
-
-			
-		if is_turn:
-
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.radius))
-			
-			if first:
-				branch_dir = turn
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + -turn * (randf_range(45.0,45.0))
-				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 1.7) + new_pipe.radius)
-				
-			else:
-				new_pipe.rotation_degrees.y = last_pipe.rotation_degrees.y + -turn * intersetion_angles.pick_random()
-				
-			
-			
-				new_pipe.position += new_pipe.transform.basis.y * ((new_pipe.height / 2) + new_pipe.radius)
-			
-		else:
-			
-			new_pipe.rotation = last_pipe.rotation
-			
-			new_pipe.position += last_pipe.transform.basis.y * ((last_pipe.height / 2) + (new_pipe.height / 2))
-			
-		#try_create_room(new_pipe)
-		randomize_next_direction()
-		combiner_content.add_child(new_pipe)
-		
-		last_pipe = new_pipe
 
 func try_create_room(_pipe):
-	if not randi_range(0,200) <= 50: return
+	if randi_range(0,200) >= 150: return
+	if segmens_from_the_last_room != 0: return
+	var wall_to_change : MeshInstance3D
 	
-	var direction = randi_range(0,1)
+	room_edge = randi_range(0,1)
 	
-	var new_room = %Room.duplicate()
+	if room_edge == 1:
+		wall_to_change = last_segment.get_node("RightWall")
+	elif room_edge == 0:
+		wall_to_change = last_segment.get_node("LeftWall")
+		
 	
-	new_room.transform.basis = _pipe.transform.basis
-	new_room.position = _pipe.position
-	new_room.position -= _pipe.transform.basis.x * 12
+	wall_to_change.mesh = load("res://Assets/Models/Building/Walls/Wall_Doorway.obj")
 	
+	wall_to_change.material_overlay = StandardMaterial3D.new()
+	var wall_material = wall_to_change.material_overlay as StandardMaterial3D
+	wall_material.metallic_specular = 0.0
+	wall_material.roughness = 0.0
+	wall_material.albedo_color = Color("737373")
+	wall_to_change.material_overlay.albedo_texture = load("res://Assets/Textures/DungeonTexture/WallDorway.png")
 	
-	new_room.visible = true
+	segmens_from_the_last_room = 1
 	
-	combiner_content.add_child(new_room)
-	
-	var new_cover_cyl = %CoverCyl.duplicate()
-	
-	new_cover_cyl.transform.basis = new_room.transform.basis
-	new_cover_cyl.rotation_degrees.y += 90
-	new_cover_cyl.position = new_room.position
-	new_cover_cyl.position += new_cover_cyl.transform.basis.y * (new_room.size.x/2)
-	
-	new_cover_cyl.visible = true
-	combiner_content.add_child(new_cover_cyl)
-	
-	var new_hole_cyl = %Hole.duplicate()
-	new_hole_cyl.position = new_cover_cyl.position
-	new_hole_cyl.transform.basis = new_cover_cyl.transform.basis
-	new_hole_cyl.visible = true
-	combiner_content.add_child(new_hole_cyl)
-
-#func verify_wall_collition():
-	#%WallCollition.transform = last_pipe.transform
-	#%WallCollition.position = last_pipe.position
-	#%WallCollition.position += last_pipe.transform.basis.y * (last_pipe.height)
-	#
-	#
-	#
-	#if %WallCollition.is_colliding():
-		#for angle in intersetion_angles:
-			#%WallCollition.rotation_degrees.y = %WallCollition.rotation_degrees.y + angle
-
 func erase_map():
-	last_pipe = rect_pipe
+	last_segment = rect_segment
 	var count = 0
 	for x in $CombinerContent.get_children():
 		if count != 0:
@@ -241,13 +211,14 @@ func load_map(map_info:Array):
 		
 		
 		combiner_content.add_child(new_pipe)
-		
-	
+
 
 func randomize_next_direction():
 	
 	turn = float(randi_range(-1,1))
-	#
+	
+	if turn == 0:
+		turn = 1
 	#if turn == last_turn:
 		#turn = -turn
 		#
@@ -259,3 +230,55 @@ func randomize_next_direction():
 	#if last_turn != 0:
 		#last_turn = turn
 	
+
+func forced_finish_maze():
+	
+	its_forced_finished_maze = true
+	#last_segment.queue_free()
+	for x in 3:
+		await get_tree().create_timer(0.1).timeout
+		
+		var last = combiner_content.get_children()[combiner_content.get_child_count() - 1]
+		last.queue_free()
+		combiner_content.remove_child(last)
+		last_segment = combiner_content.get_children()[combiner_content.get_child_count() - 1]
+	
+	while !combiner_content.get_children()[combiner_content.get_child_count() - 1].is_in_group("angle"):
+		await get_tree().create_timer(0.1).timeout
+		
+		var last = combiner_content.get_children()[combiner_content.get_child_count() - 1]
+		last.queue_free()
+		combiner_content.remove_child(last)
+		
+		
+		last_segment = combiner_content.get_children()[combiner_content.get_child_count() - 1]
+		
+	#combiner_content.get_children()[combiner_content.get_child_count() - 1].queue_free()
+	
+	create_final_door()
+func create_final_door():
+	var last_way = combiner_content.get_children()[combiner_content.get_child_count() - 1]
+	
+	
+	await get_tree().create_timer(0.1).timeout
+	
+	if last_way.is_in_group("angle"):
+		last_way.queue_free()
+		combiner_content.remove_child(last_way)
+		
+		last_segment = combiner_content.get_children()[combiner_content.get_child_count() - 1]
+		
+		create_final_door()
+	else:
+		var new_door = %FinalDoor.duplicate()
+		new_door.transform.basis = last_segment.transform.basis
+		
+		new_door.position = last_segment.position
+		new_door.position += last_segment.transform.basis.z * (segments_base_size / 2)
+		
+		combiner_content.add_child(new_door)
+	
+
+func _on_collition_detector_area_entered(area):
+	if not its_forced_finished_maze:
+		forced_finish_maze()

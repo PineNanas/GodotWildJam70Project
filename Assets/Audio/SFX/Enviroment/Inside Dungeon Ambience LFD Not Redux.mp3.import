@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpdlaq7svebqu"
+path="res://.godot/imported/Inside Dungeon Ambience LFD Not Redux.mp3-9a68c244db2f8b14342a7cd53cc1bd21.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Enviroment/Inside Dungeon Ambience LFD Not Redux.mp3"
+dest_files=["res://.godot/imported/Inside Dungeon Ambience LFD Not Redux.mp3-9a68c244db2f8b14342a7cd53cc1bd21.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

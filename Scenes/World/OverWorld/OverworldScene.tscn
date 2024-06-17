@@ -1,0 +1,861 @@
+[gd_scene load_steps=13 format=3 uid="uid://bratqsol2mbfu"]
+
+[ext_resource type="ArrayMesh" uid="uid://c53eyrxdujjd5" path="res://Assets/Models/WorldObjects/Frence.obj" id="1_eh671"]
+[ext_resource type="Script" path="res://Scenes/World/OverWorld/OverworldScene.gd" id="1_jvafl"]
+[ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="2_d8w7f"]
+[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_jxpkx"]
+[ext_resource type="PackedScene" uid="uid://cfcbrbleownhl" path="res://Assets/Models/WorldObjects/WhiteSpruce LFD V1.glb" id="5_x15ma"]
+[ext_resource type="AudioStream" uid="uid://b5gmj8s7e80ki" path="res://Assets/Audio/SFX/Enviroment/Outside Dungeon Ambience LFD Not Redux.mp3" id="6_isb76"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_38mpk"]
+size = Vector3(16.3752, 17.5998, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_uh8wl"]
+density = 8.0
+albedo = Color(0.529067, 0.529067, 0.529067, 1)
+edge_fade = 3.55062
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ob10q"]
+shading_mode = 0
+albedo_texture = ExtResource("2_d8w7f")
+uv1_scale = Vector3(0.161, 0.161, 0.161)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_vc6vt"]
+
+[sub_resource type="Sky" id="Sky_e48b7"]
+sky_material = SubResource("PhysicalSkyMaterial_vc6vt")
+
+[sub_resource type="Environment" id="Environment_mspac"]
+background_mode = 2
+sky = SubResource("Sky_e48b7")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0394
+
+[node name="OverworldScene" type="Node3D"]
+script = ExtResource("1_jvafl")
+
+[node name="OverworldObjects" type="Node3D" parent="."]
+
+[node name="Frences" type="Node3D" parent="OverworldObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3427, -1.57612, -12.2606)
+
+[node name="Frence" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -2.46053, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence3" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 3.60214, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence3"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence3/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence2" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 0.500985, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence2"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence2/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence4" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 6.57399, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence4"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence4/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence5" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 9.63515, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence5"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence5/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence6" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 15.6978, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence6"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence6/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence7" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 12.5967, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence7"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence7/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence8" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 18.6697, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence8"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence8/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence9" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -26.6694, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence9"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence9/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence10" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -20.6067, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence10"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence10/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence11" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -23.7079, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence11"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence11/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence12" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -17.6348, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence12"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence12/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence13" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -14.5737, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence13"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence13/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence14" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -8.51101, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence14"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence14/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence15" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -11.6122, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence15"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence15/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence16" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -5.53917, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence16"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence16/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence17" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 46.1339, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence17"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence17/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence18" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 52.1966, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence18"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence18/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence19" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 49.0954, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence19"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence19/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence20" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 55.1684, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence20"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence20/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence21" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 58.2296, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence21"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence21/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence22" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 64.2923, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence22"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence22/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence23" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 61.1912, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence23"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence23/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence24" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 67.2642, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence24"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence24/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence25" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 21.9251, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence25"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence25/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence26" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 27.9878, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence26"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence26/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence27" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 24.8866, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence27"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence27/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence28" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 30.9597, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence28"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence28/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence29" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 34.0208, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence29"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence29/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence30" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 40.0835, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence30"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence30/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence31" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 36.9823, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence31"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence31/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence32" type="MeshInstance3D" parent="OverworldObjects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 43.0553, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence32"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence32/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frences2" type="Node3D" parent="OverworldObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1677, -1.57612, -42.8285)
+
+[node name="Frence" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -2.46053, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence3" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 3.60214, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence3"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence3/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence2" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 0.500985, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence2"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence2/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence4" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 6.57399, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence4"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence4/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence5" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 9.63515, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence5"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence5/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence6" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 15.6978, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence6"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence6/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence7" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 12.5967, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence7"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence7/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence8" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 18.6697, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence8"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence8/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence9" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -26.6694, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence9"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence9/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence10" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -20.6067, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence10"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence10/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence11" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -23.7079, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence11"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence11/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence12" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -17.6348, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence12"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence12/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence13" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -14.5737, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence13"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence13/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence14" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -8.51101, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence14"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence14/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence15" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -11.6122, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence15"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence15/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence16" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -5.53917, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence16"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence16/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence17" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 46.1339, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence17"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence17/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence18" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 52.1966, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence18"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence18/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence19" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 49.0954, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence19"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence19/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence20" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 55.1684, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence20"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence20/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence21" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 58.2296, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence21"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence21/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence22" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 64.2923, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence22"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence22/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence23" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 61.1912, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence23"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence23/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence24" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 67.2642, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence24"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence24/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence25" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 21.9251, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence25"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence25/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence26" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 27.9878, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence26"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence26/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence27" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 24.8866, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence27"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence27/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence28" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 30.9597, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence28"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence28/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence29" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 34.0208, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence29"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence29/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence30" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 40.0835, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence30"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence30/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence31" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 36.9823, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence31"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence31/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Frence32" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 43.0553, 2.43367, 26.4448)
+mesh = ExtResource("1_eh671")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence32"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence32/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_38mpk")
+
+[node name="Brushes" type="Node3D" parent="OverworldObjects"]
+unique_name_in_owner = true
+
+[node name="Trees" type="Node3D" parent="OverworldObjects"]
+unique_name_in_owner = true
+
+[node name="WhiteSpruce LFD V1" parent="OverworldObjects/Trees" instance=ExtResource("5_x15ma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -24)
+
+[node name="Fog" type="Node3D" parent="OverworldObjects"]
+
+[node name="FogVolume" type="FogVolume" parent="OverworldObjects/Fog"]
+transform = Transform3D(4.81766, 0, 0, 0, 1, 0, 0, 0, 1, -48.5549, 15.708, 0)
+size = Vector3(2, 31.5956, 307.707)
+material = SubResource("FogMaterial_uh8wl")
+
+[node name="Ground" type="CSGBox3D" parent="OverworldObjects"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2583)
+use_collision = true
+collision_layer = 8
+size = Vector3(127.799, 0.27124, 237.805)
+material = SubResource("StandardMaterial3D_ob10q")
+
+[node name="Ground2" type="CSGBox3D" parent="OverworldObjects"]
+unique_name_in_owner = true
+transform = Transform3D(0.505683, 0, 0, 0, 1, 0, 0, 0, 1, -129.054, 0, -1.2583)
+use_collision = true
+collision_layer = 8
+size = Vector3(265.15, 0.27124, 65.0586)
+material = SubResource("StandardMaterial3D_ob10q")
+
+[node name="MainPlayer" parent="." instance=ExtResource("2_jxpkx")]
+transform = Transform3D(0.0412304, 0, -0.99915, 0, 1, 0, 0.99915, 0, 0.0412304, -36.611, 0.327995, 0)
+speed = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mspac")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.471018, -0.100269, -0.876406, 0.83235, -0.278493, 0.479203, -0.292122, -0.95519, -0.0477166, 0, 9.37987, 0)
+light_energy = 0.407
+light_volumetric_fog_energy = 2.695
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_isb76")
+autoplay = true

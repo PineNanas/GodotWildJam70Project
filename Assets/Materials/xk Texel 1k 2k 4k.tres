@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bhmpvgdqe41gf"]
+
+[ext_resource type="Texture2D" uid="uid://4jwo82vf7ynt" path="res://Assets/Models/Building/MazeObjects/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_ao_met_rough_CargoBoxBlender1k_Roughness.png" id="2_kce8k"]
+[ext_resource type="Texture2D" uid="uid://bgrrqnf3rph4h" path="res://Assets/Models/Building/MazeObjects/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_CargoBoxBlender1k_Normal.png" id="3_mx6vj"]
+
+[resource]
+resource_name = "xk Texel 1k 2k 4k"
+albedo_color = Color(0.254902, 0.192157, 0.152941, 1)
+metallic_specular = 0.0
+metallic_texture = ExtResource("2_kce8k")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_kce8k")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_mx6vj")

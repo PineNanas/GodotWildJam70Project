@@ -97,7 +97,7 @@ _data = {
 [sub_resource type="QuadMesh" id="QuadMesh_2auo3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rfglt"]
-render_priority = 127
+render_priority = -1
 shader = ExtResource("2_cpuhc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xxx22"]
@@ -114,7 +114,7 @@ script = ExtResource("2_ykeem")
 
 [node name="PlayerCamera" type="Camera3D" parent="Cameracontent"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95996, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
 current = true
 fov = 70.0
 
@@ -134,6 +134,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_rfglt")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cameracontent/PlayerCamera"]
 transform = Transform3D(0.333772, -0.757802, 0, 0.757802, 0.333772, 0, 0, 0, 0.82805, 0.00120002, -0.338465, -0.547195)
+visible = false
 radius = 0.026
 height = 1.11101
 
@@ -150,7 +151,16 @@ shape = SubResource("BoxShape3D_xxx22")
 
 [node name="SlideTime" type="Timer" parent="Timers"]
 unique_name_in_owner = true
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 
+[node name="Sfx" type="Node3D" parent="."]
+
+[node name="StepsSfx" type="AudioStreamPlayer3D" parent="Sfx"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91166, 0)
+bus = &"SFX"
+area_mask = 4
+
 [connection signal="timeout" from="Timers/SlideTime" to="." method="_on_slide_time_timeout"]
+[connection signal="finished" from="Sfx/StepsSfx" to="Cameracontent" method="_on_steps_sfx_finished"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cupw28dreyc5r"
+path="res://.godot/imported/Lantern Burning Heavier LFD.mp3-cfa3fc978595a729b870a2620c24f2a0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Enviroment/Lantern Burning Heavier LFD.mp3"
+dest_files=["res://.godot/imported/Lantern Burning Heavier LFD.mp3-cfa3fc978595a729b870a2620c24f2a0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.001
+bpm=0.0
+beat_count=0
+bar_beats=4
