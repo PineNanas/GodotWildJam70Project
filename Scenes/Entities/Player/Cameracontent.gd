@@ -82,7 +82,9 @@ func crunch():
 
 
 func idle():
+
 	%StepsSfx.playing = false
+
 	bobbing_amount = 0.01
 	bobbing_speed = 2.0
 

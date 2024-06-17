@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dieou56o08txp"]
+[gd_scene load_steps=13 format=3 uid="uid://bmsesnj5mmijy"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Player/MainPlayer.gd" id="1_dqk6w"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Pixel3DShader.gdshader" id="2_cpuhc"]
