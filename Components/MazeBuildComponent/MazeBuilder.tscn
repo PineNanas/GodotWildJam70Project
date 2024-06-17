@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cx67wugfoxkbv" path="res://Assets/Textures/DungeonTexture/Wall45001.png" id="11_tb522"]
 [ext_resource type="ArrayMesh" uid="uid://6m1amcr3qfvb" path="res://Assets/Models/Building/Ceilings/Ceiling_90d.obj" id="11_x057y"]
 [ext_resource type="ArrayMesh" uid="uid://chakkcsqbp85g" path="res://Assets/Models/Building/Floors/Floor_45d.obj" id="12_mq7ql"]
-[ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="13_xugyn"]
+[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="13_xugyn"]
 [ext_resource type="ArrayMesh" uid="uid://crt01wnlmt0x3" path="res://Assets/Models/Building/Ceilings/Ceiling__45d.obj" id="14_sbm7p"]
 [ext_resource type="PackedScene" uid="uid://chbjp45srd1n3" path="res://Components/SegmentThingsRandomizer/SegmentThingsRandomizer.tscn" id="16_wc4u5"]
 [ext_resource type="PackedScene" uid="uid://tcd6sers8ixq" path="res://Assets/Models/Building/MazeObjects/Barrel With Texture LFD V1.fbx" id="17_qdyga"]
