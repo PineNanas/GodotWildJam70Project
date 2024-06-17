@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxamx2sujwxjb"
+path="res://.godot/imported/Fire Or Torch Burning Lighter LFD.mp3-187d604b678651392f02689ed21765bb.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Enviroment/Fire Or Torch Burning Lighter LFD.mp3"
+dest_files=["res://.godot/imported/Fire Or Torch Burning Lighter LFD.mp3-187d604b678651392f02689ed21765bb.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.005
+bpm=0.0
+beat_count=0
+bar_beats=4

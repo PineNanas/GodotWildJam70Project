@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Wild Jam 70 Project"
-run/main_scene="res://Scenes/World/Test/TestWorld.tscn"
+run/main_scene="res://Scenes/World/OverWorld/OverworldScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -80,4 +80,7 @@ enter={
 [layer_names]
 
 3d_physics/layer_1="Player"
+2d_physics/layer_3="SFX"
 3d_physics/layer_4="StaticsBody"
+3d_physics/layer_12="WorldInteractArea"
+3d_physics/layer_20="HurtBoxComponent"

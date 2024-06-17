@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgclbws65psy8"
+path="res://.godot/imported/Grass Footstep 4 LFD-2.mp3-2167b4c6957bb1b1298c9b485e2a8c59.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/PlayerActions/MP3 Grass Footsteps/Grass Footstep 4 LFD-2.mp3"
+dest_files=["res://.godot/imported/Grass Footstep 4 LFD-2.mp3-2167b4c6957bb1b1298c9b485e2a8c59.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

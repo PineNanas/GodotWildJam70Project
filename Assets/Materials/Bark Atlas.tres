@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cf4yxugiah6xb"]
+
+[ext_resource type="Texture2D" uid="uid://utmtnxmqutus" path="res://Assets/Models/WorldObjects/WhiteSpruce LFD V1_Bark Color.png" id="1_qrv64"]
+
+[resource]
+resource_name = "Bark Atlas"
+cull_mode = 2
+albedo_texture = ExtResource("1_qrv64")
+roughness = 0.883686
+emission_enabled = true
+emission_texture = ExtResource("1_qrv64")
+texture_filter = 2
