@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://c53eyrxdujjd5" path="res://Assets/Models/WorldObjects/Frence.obj" id="1_eh671"]
 [ext_resource type="Script" path="res://Scenes/World/OverWorld/OverworldScene.gd" id="1_jvafl"]
 [ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="2_d8w7f"]
-[ext_resource type="PackedScene" uid="uid://dieou56o08txp" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_jxpkx"]
+[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_jxpkx"]
 [ext_resource type="PackedScene" uid="uid://cfcbrbleownhl" path="res://Assets/Models/WorldObjects/WhiteSpruce LFD V1.glb" id="5_x15ma"]
 [ext_resource type="AudioStream" uid="uid://b5gmj8s7e80ki" path="res://Assets/Audio/SFX/Enviroment/Outside Dungeon Ambience LFD Not Redux.mp3" id="6_isb76"]
 
