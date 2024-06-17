@@ -71,11 +71,7 @@ func generate_maze(_amount:int):
 		await get_tree().create_timer(0.1).timeout
 		var fix_angle := 0
 		
-		#fix_angle = verify_wall_collition()
-		
-		
-		
-		#if randi_range(0,100) < 2:
+
 
 
 		var is_turn := false
@@ -219,17 +215,7 @@ func randomize_next_direction():
 	
 	if turn == 0:
 		turn = 1
-	#if turn == last_turn:
-		#turn = -turn
-		#
-		##if randi_range(0,1):
-			##
-		##else:
-			##turn = 0
-	#
-	#if last_turn != 0:
-		#last_turn = turn
-	
+
 
 func forced_finish_maze():
 	
