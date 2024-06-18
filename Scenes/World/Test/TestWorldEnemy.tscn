@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="1_r4bcv"]
 [ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_l1nmo"]
-[ext_resource type="PackedScene" uid="uid://cx3qfruay7dkh" path="res://Scenes/Entities/Enemies/Enemy.tscn" id="3_wodgw"]
 [ext_resource type="PackedScene" uid="uid://wygekfevvnvx" path="res://Scenes/Entities/Enemies/PatrolPoint.tscn" id="4_bpnwc"]
+[ext_resource type="PackedScene" uid="uid://btg36pweftypq" path="res://Scenes/Entities/Enemies/AnimationTestEnemy.tscn" id="4_guwhb"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_jgu4v"]
 
@@ -41,11 +41,6 @@ environment = SubResource("Environment_yj760")
 [node name="MainPlayer" parent="." instance=ExtResource("2_l1nmo")]
 transform = Transform3D(0.146584, 0, -0.989198, 0, 1, 0, 0.989198, 0, 0.146584, -11.8492, 5.05244, 0)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_wodgw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5851, 4.89719, -1.22154)
-patrol = true
-patrol_points = [NodePath("../PatrolPoint1"), NodePath("../PatrolPoint2")]
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120239, -70.3294, 0.044548)
 navigation_mesh = SubResource("NavigationMesh_027mb")
@@ -64,3 +59,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.61512, 9.233)
 
 [node name="PatrolPoint2" parent="." instance=ExtResource("4_bpnwc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.799, 4.49492, 12.1469)
+
+[node name="Enemy" parent="." instance=ExtResource("4_guwhb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.50711, 0)
