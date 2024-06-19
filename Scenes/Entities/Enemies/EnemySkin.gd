@@ -15,8 +15,11 @@ class_name EnemySkin
 		else:
 			state_machine.travel("Idle")
 
-# func hit() -> void:
-# 	animation_tree["parameters/HitShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+func hit() -> void:
+	animation_tree["parameters/Hit/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
-# func death() -> void:
-# 	state_machine.start("Death")
+func attack() -> void:
+	animation_tree["parameters/Attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
+func death() -> void:
+	animation_tree["parameters/Death/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
