@@ -1,15 +1,13 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bcl0blnh1nt7m"]
 
-[ext_resource type="Texture2D" uid="uid://b3g1lvk8cw4k6" path="res://Assets/Models/Building/MazeObjects/Barrel With Texture LFD V1-13ecdc17fe09b52da9d5cff4d706340d_ao_met_rough_BarrelBlender4k_Roughness.png" id="2_4gsjg"]
-[ext_resource type="Texture2D" uid="uid://cu5qu7hhvyx4" path="res://Assets/Models/Building/MazeObjects/Barrel With Texture LFD V1-13ecdc17fe09b52da9d5cff4d706340d_BarrelBlender4k_Normal.png" id="3_gdn1j"]
+[ext_resource type="Texture2D" uid="uid://cf1exygqxeqba" path="res://Assets/Textures/Objects/BarrelTexture.png" id="1_q28i5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_beuwc"]
+load_path = "res://.godot/imported/Barrel With Texture LFD V1-13ecdc17fe09b52da9d5cff4d706340d_BarrelBlender4k_Normal.png-ffb47822466a336f3dcea88f37c83057.s3tc.ctex"
 
 [resource]
 resource_name = "Material"
-albedo_color = Color(0.248169, 0.0941198, 1.20327e-08, 1)
+albedo_texture = ExtResource("1_q28i5")
 metallic_specular = 0.0
-metallic_texture = ExtResource("2_4gsjg")
-metallic_texture_channel = 2
-roughness_texture = ExtResource("2_4gsjg")
-roughness_texture_channel = 1
-normal_enabled = true
-normal_texture = ExtResource("3_gdn1j")
+roughness = 0.0
+normal_texture = SubResource("CompressedTexture2D_beuwc")

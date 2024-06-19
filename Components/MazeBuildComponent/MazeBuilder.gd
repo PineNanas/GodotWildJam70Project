@@ -31,6 +31,7 @@ var last_turn := 0
 var its_forced_finished_maze := false
 
 var segmens_from_the_last_room := 0
+var segments_count := 0
 
 var branch_dir := 0
 #25,45,
@@ -38,7 +39,8 @@ var branch_dir := 0
 var intersetion_angles := [45,90]
 
 func _ready():
-	generate_maze(randi_range(15,25))
+	CONFIGAUTOLOAD.basic_autoconfig()
+	generate_maze(randi_range(5,5))
 
 func _input(event):
 	if event.is_action_pressed("enter"):
@@ -58,7 +60,7 @@ func _input(event):
 		#await get_tree().create_timer(2.0).timeout
 		#load_map(CONFIGAUTOLOAD.maps.pick_random())
 		erase_map()
-		generate_maze(randi_range(5,15))
+		generate_maze(randi_range(7,15))
 
 
 
@@ -68,6 +70,7 @@ func generate_maze(_amount:int):
 	var rect_turn_count := 0
 	
 	for x in _amount:
+		
 		await get_tree().create_timer(0.1).timeout
 		var fix_angle := 0
 		
@@ -158,11 +161,19 @@ func generate_maze(_amount:int):
 		
 		last_segment = new_segment
 		
+		segments_count += 1
+		
 		if last_segment.is_in_group("rectsegment"):
 			try_create_room(new_segment)
+	
 	if not its_forced_finished_maze:
 		create_final_door()
 
+func verify_maze_size():
+	if segments_count < 4:
+		erase_map()
+		generate_maze(randi_range(4,4)) 
+		segments_count = 0
 
 func try_create_room(_pipe):
 	if randi_range(0,200) >= 150: return
@@ -260,10 +271,11 @@ func create_final_door():
 		new_door.transform.basis = last_segment.transform.basis
 		
 		new_door.position = last_segment.position
-		new_door.position += last_segment.transform.basis.z * (segments_base_size / 2)
-		
+		new_door.position += last_segment.transform.basis.z * (segments_base_size)
+		new_door.exit_door = true
 		combiner_content.add_child(new_door)
-	
+		
+	verify_maze_size()
 
 func _on_collition_detector_area_entered(area):
 	if not its_forced_finished_maze:

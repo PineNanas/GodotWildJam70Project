@@ -5,6 +5,5 @@
 [resource]
 resource_name = "Leaf"
 transparency = 1
-shading_mode = 0
 albedo_texture = ExtResource("1_vrb7r")
 texture_filter = 2

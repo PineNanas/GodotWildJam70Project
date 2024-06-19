@@ -7,6 +7,5 @@ resource_name = "Bark Atlas"
 cull_mode = 2
 albedo_texture = ExtResource("1_qrv64")
 roughness = 0.883686
-emission_enabled = true
 emission_texture = ExtResource("1_qrv64")
 texture_filter = 2

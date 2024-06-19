@@ -2,30 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8e66jq4f25eh"
-path.s3tc="res://.godot/imported/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_CargoBoxBlender1k_BaseColor.png-249ea93d33d6087c3b22344315849d14.s3tc.ctex"
+uid="uid://co5crimwj5mv"
+path="res://.godot/imported/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_CargoBoxBlender1k_BaseColor.png-249ea93d33d6087c3b22344315849d14.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "1bd247185acde6add95d9ba7b1618c44"
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Models/Building/MazeObjects/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_CargoBoxBlender1k_BaseColor.png"
-dest_files=["res://.godot/imported/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_CargoBoxBlender1k_BaseColor.png-249ea93d33d6087c3b22344315849d14.s3tc.ctex"]
+dest_files=["res://.godot/imported/Box With Texture LFD V1-07858f267fa0f0b63fbcd534f3c27053_CargoBoxBlender1k_BaseColor.png-249ea93d33d6087c3b22344315849d14.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -35,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

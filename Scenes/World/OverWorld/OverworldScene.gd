@@ -8,6 +8,7 @@ var list_of_trees = [preload("res://Assets/Models/WorldObjects/Tree 2 LFD.glb"),
 
 
 func _ready():
+	CONFIGAUTOLOAD.basic_autoconfig()
 	auto_config()
 
 func auto_config():
@@ -15,7 +16,7 @@ func auto_config():
 
 func randomize_bushes():
 	
-	for x in randi_range(600,600):
+	for x in randi_range(100,100):
 		var new_brush = preloadded_bush.instantiate()
 		
 		new_brush.position.x = (randf_range(ground.size.x / 2,-ground.size.x / 2))
@@ -25,8 +26,19 @@ func randomize_bushes():
 		
 		
 		%Brushes.add_child(new_brush)
+	
+	for x in randi_range(30,45):
+		var new_tomb = %Tombstone.duplicate()
 		
-	for x in randi_range(25,45):
+		new_tomb.position.x = (randf_range(ground.size.x / 2,-ground.size.x / 2))
+		new_tomb.position.z = (randf_range(ground.size.z / 2,-ground.size.z / 2))
+		
+		new_tomb.rotation_degrees.y = 90
+		
+		
+		%Brushes.add_child(new_tomb)
+	
+	for x in randi_range(25,35):
 		var new_tree = list_of_trees.pick_random().instantiate()
 		
 		new_tree.position.x = (randf_range(ground.size.x / 2,-ground.size.x / 2))

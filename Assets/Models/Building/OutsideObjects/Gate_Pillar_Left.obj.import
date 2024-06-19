@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://duj2u0t3lmqjw"
+path="res://.godot/imported/Gate_Pillar_Left.obj-3f05b90a1357ff3922a79b75a7d5cf9b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Gate_Pillar_Left.obj-3f05b90a1357ff3922a79b75a7d5cf9b.mesh"]
+
+source_file="res://Assets/Models/Building/OutsideObjects/Gate_Pillar_Left.obj"
+dest_files=["res://.godot/imported/Gate_Pillar_Left.obj-3f05b90a1357ff3922a79b75a7d5cf9b.mesh", "res://.godot/imported/Gate_Pillar_Left.obj-3f05b90a1357ff3922a79b75a7d5cf9b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
