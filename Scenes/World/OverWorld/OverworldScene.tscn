@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bratqsol2mbfu"]
+[gd_scene load_steps=28 format=3 uid="uid://bratqsol2mbfu"]
 
 [ext_resource type="Script" path="res://Scenes/World/OverWorld/OverworldScene.gd" id="1_jvafl"]
 [ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="2_d8w7f"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2rl1hollta4a" path="res://Components/WorldObjectsInteract/WorldObjectInteract.tscn" id="9_tytqh"]
 [ext_resource type="AudioStream" uid="uid://byu3hxxvrfdpt" path="res://Assets/Audio/SFX/VoiceActing/VO_2_Processed.mp3" id="12_k0fio"]
 [ext_resource type="Script" path="res://Scenes/World/OverWorld/Cutscene.gd" id="12_lj5xi"]
+[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="14_62lmm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jumex"]
 shading_mode = 0
@@ -647,5 +648,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.109804, 0.105882, 0.105882, 1)
+
+[node name="MainPlayer" parent="." instance=ExtResource("14_62lmm")]
 
 [editable path="OverworldObjects/PanteonEntrance/WorldObjectInteract"]

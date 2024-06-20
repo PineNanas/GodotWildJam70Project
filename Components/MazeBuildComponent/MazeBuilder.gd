@@ -40,7 +40,7 @@ var intersetion_angles := [45,90]
 
 func _ready():
 	CONFIGAUTOLOAD.basic_autoconfig()
-	generate_maze(randi_range(5,5))
+	generate_maze(randi_range(9,15))
 
 func _input(event):
 	if event.is_action_pressed("enter"):
@@ -80,7 +80,7 @@ func generate_maze(_amount:int):
 		var is_turn := false
 		
 		if turn:
-			if randf_range(0.0,100.0) <= turn_percentaje:
+			if turn_percentaje != null and randf_range(0.0,100.0) <= turn_percentaje:
 				is_turn = true
 		else:
 			rect_turn_count += 1
@@ -156,7 +156,7 @@ func generate_maze(_amount:int):
 		combiner_content.add_child(new_segment)
 		if segmens_from_the_last_room != 0:
 			segmens_from_the_last_room += 1
-		if segmens_from_the_last_room == 4:
+		if segmens_from_the_last_room == 7:
 			segmens_from_the_last_room = 0
 		
 		last_segment = new_segment
@@ -198,6 +198,28 @@ func try_create_room(_pipe):
 	wall_to_change.material_overlay.albedo_texture = load("res://Assets/Textures/DungeonTexture/WallDorway.png")
 	
 	segmens_from_the_last_room = 1
+	
+	var new_room = %Room.duplicate()
+	new_room.transform.basis = _pipe.transform.basis
+
+	if room_edge == 1:
+		new_room.rotation_degrees.y += 90 
+		_pipe.get_node("Door").position = _pipe.get_node("StaticR").position
+		_pipe.get_node("StaticR").queue_free()
+		#new_room.position += _pipe.transform.basis.x * (7.0 + 3.0)
+	elif room_edge == 0:
+		new_room.rotation_degrees.y -= 90 
+		_pipe.get_node("Door").position = _pipe.get_node("StaticL").position
+		_pipe.get_node("StaticL").queue_free()
+	#	new_room.position -= _pipe.transform.basis.x * (7.0 + 3.0)
+	new_room.position = _pipe.position
+	new_room.position.y = -2.291
+	new_room.position -= new_room.transform.basis.z * (7.0 + 3.0)
+	new_room.position += _pipe.transform.basis.z * (7.0/6)
+	
+	
+	
+	combiner_content.add_child(new_room)
 	
 func erase_map():
 	last_segment = rect_segment

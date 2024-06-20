@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://74w7e3w7xul1"]
+[gd_scene load_steps=62 format=3 uid="uid://74w7e3w7xul1"]
 
 [ext_resource type="Script" path="res://Components/MazeBuildComponent/MazeBuilder.gd" id="1_3jpl1"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_nimll"]
@@ -22,9 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://tcd6sers8ixq" path="res://Assets/Models/Building/MazeObjects/Barrel With Texture LFD V1.fbx" id="17_qdyga"]
 [ext_resource type="PackedScene" uid="uid://c6qcfk40t22dk" path="res://Assets/Models/Building/MazeObjects/Box With Texture LFD V1.fbx" id="18_a50d1"]
 [ext_resource type="Texture2D" uid="uid://4mwmusxyf4fl" path="res://Assets/Textures/DungeonTexture/Borderfloor3x3texture1.png" id="19_8v4n4"]
-[ext_resource type="AudioStream" uid="uid://dpdlaq7svebqu" path="res://Assets/Audio/SFX/Enviroment/Inside Dungeon Ambience LFD Not Redux.mp3" id="19_mvtmx"]
 [ext_resource type="Texture2D" uid="uid://ymw147vpx747" path="res://Assets/Textures/DungeonTexture/Borderfloor45.png" id="20_83fed"]
-[ext_resource type="AudioStream" uid="uid://cupw28dreyc5r" path="res://Assets/Audio/SFX/Enviroment/Lantern Burning Heavier LFD.mp3" id="20_gloy5"]
 [ext_resource type="Script" path="res://Components/MazeBuildComponent/FinalDoor.gd" id="23_k17of"]
 [ext_resource type="PackedScene" uid="uid://d2rl1hollta4a" path="res://Components/WorldObjectsInteract/WorldObjectInteract.tscn" id="24_7luxs"]
 
@@ -56,6 +54,9 @@ size = Vector3(2.43945, 0.354492, 2.24707)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tf3nl"]
 size = Vector3(0.487549, 2.33411, 4.39874)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4sndv"]
+size = Vector3(0.491211, 2.6944, 1.25024)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4ajd"]
 size = Vector3(7, 0.01, 7)
@@ -91,9 +92,10 @@ metallic_specular = 0.0
 roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k8xt"]
-albedo_texture = ExtResource("6_p7thg")
+albedo_texture = ExtResource("19_8v4n4")
 metallic_specular = 0.0
 roughness = 0.0
+uv1_scale = Vector3(0.665, 0.665, 0.665)
 uv1_triplanar = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_520tf"]
@@ -172,14 +174,6 @@ size = Vector3(3.72754, 5.21289, 0.001)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3k03a"]
 size = Vector3(2.26953, 3.03125, 0.150146)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gsu1o"]
-transparency = 4
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 0.941176)
-
-[sub_resource type="SphereMesh" id="SphereMesh_p7y3y"]
-
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qn5yl"]
 
 [sub_resource type="Sky" id="Sky_whv0w"]
@@ -193,7 +187,7 @@ volumetric_fog_density = 0.0206
 
 [node name="MazeBuilder" type="Node3D" node_paths=PackedStringArray("rect_segment")]
 script = ExtResource("1_3jpl1")
-turn_percentaje = 51.0
+turn_percentaje = 9.0
 turn = 1.0
 segments_base_size = 4.0
 rect_segment = NodePath("CombinerContent/RectSegment")
@@ -238,19 +232,32 @@ collision_mask = 67108864
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25027, 0)
 shape = SubResource("BoxShape3D_js2ai")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="CombinerContent/RectSegment"]
+[node name="StaticR" type="StaticBody3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49188, 0, 0)
 collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CombinerContent/RectSegment/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54482, -0.998774, 1.80729)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CombinerContent/RectSegment/StaticR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0447118, -0.998774, 1.80729)
 shape = SubResource("BoxShape3D_tf3nl")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="CombinerContent/RectSegment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03426, 0, 0)
+[node name="Door" type="StaticBody3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.28434, 0)
 collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CombinerContent/RectSegment/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54482, -0.998774, 1.80729)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CombinerContent/RectSegment/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0363351, -0.998773, 3.44756)
+shape = SubResource("BoxShape3D_4sndv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CombinerContent/RectSegment/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0363351, -1.14858, 0.246991)
+shape = SubResource("BoxShape3D_4sndv")
+
+[node name="StaticL" type="StaticBody3D" parent="CombinerContent/RectSegment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51155, 0, 0)
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CombinerContent/RectSegment/StaticL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0350783, -0.998774, 1.80729)
 shape = SubResource("BoxShape3D_tf3nl")
 
 [node name="SegmentThingsRandomizer" parent="CombinerContent/RectSegment" instance=ExtResource("16_wc4u5")]
@@ -297,34 +304,36 @@ projection = 1
 size = 173.0
 
 [node name="Room" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.27775, -3.88033)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8798, -2.13224, -8.78808)
 
 [node name="Floor" type="MeshInstance3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.86058e-08, 1, 0, -1.11197, -4.37114e-08, 0, 0, 4.74218)
 material_override = SubResource("StandardMaterial3D_ixlvy")
 mesh = SubResource("QuadMesh_qtjpk")
 
 [node name="RoomWall" type="MeshInstance3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.74223, -3.45683, 0.00739479, -3.53897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.74223, -3.45683, 0.00739479, 1.20321)
 material_override = SubResource("StandardMaterial3D_0505e")
 mesh = ExtResource("4_8orqx")
 
 [node name="RoomWall2" type="MeshInstance3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.74223, 3.25836, 0.00739479, -3.53897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.74223, 3.25836, 0.00739479, 1.20321)
 material_override = SubResource("StandardMaterial3D_wx548")
 mesh = ExtResource("4_8orqx")
 
 [node name="RoomWall3" type="MeshInstance3D" parent="Room"]
-transform = Transform3D(-4.37114e-08, 0, 1.74223, 0, 1, 0, -1, 0, -7.61553e-08, -3.88509, 0.00739479, -3.53897)
+transform = Transform3D(-4.37114e-08, 0, 1.74223, 0, 1, 0, -1, 0, -7.61553e-08, -3.88509, 0.00739479, 1.20321)
 material_override = SubResource("StandardMaterial3D_wx548")
 mesh = ExtResource("4_8orqx")
 
 [node name="Celling" type="MeshInstance3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.48786, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.47323, 4.74218)
 material_override = SubResource("StandardMaterial3D_8k8xt")
 mesh = SubResource("QuadMesh_520tf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.74218)
 collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D"]
@@ -340,7 +349,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0477
 shape = SubResource("BoxShape3D_t7ej1")
 
 [node name="SegmentThingsRandomizer2" parent="Room" instance=ExtResource("16_wc4u5")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.153251, -0.88453)
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.153251, 3.85765)
 object_to_randomize = Array[PackedScene]([ExtResource("17_qdyga"), ExtResource("18_a50d1")])
 randomize_posivility = 14.375
 is_randomize = true
@@ -454,7 +463,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_m1khk")
 
 [node name="FinalDoor" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.89285, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291405, 0)
 material_override = SubResource("StandardMaterial3D_lxy8c")
 mesh = SubResource("BoxMesh_0n60f")
 script = ExtResource("23_k17of")
@@ -474,36 +483,17 @@ shape = SubResource("BoxShape3D_3k03a")
 
 [node name="RandomObjects" type="Node3D" parent="."]
 
-[node name="MainPlayer" parent="." instance=ExtResource("13_xugyn")]
-transform = Transform3D(-0.997653, 0, 0.068468, 0, 1, 0, -0.068468, 0, -0.997653, 0, -1.91251, 1.43871)
-speed = 3.0
-
-[node name="Inside" type="AudioStreamPlayer3D" parent="MainPlayer"]
-transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -0.0266775, 1.4663, -0.38872)
-stream = ExtResource("19_mvtmx")
-volume_db = -30.0
-autoplay = true
-bus = &"SFX"
-
-[node name="Lanter" type="AudioStreamPlayer3D" parent="MainPlayer"]
-transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -0.0266775, 1.4663, -0.38872)
-stream = ExtResource("20_gloy5")
-volume_db = -19.743
-
-[node name="OmniLight3D" type="OmniLight3D" parent="MainPlayer"]
-transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -0.0189392, 1.52513, -0.275964)
-light_color = Color(1, 0.672625, 0.437464, 1)
-omni_range = 5.274
-omni_attenuation = 0.500001
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MainPlayer"]
-transform = Transform3D(8.90415, 0, -1.19209e-07, 0, 8.90415, 0, 1.19209e-07, 0, 8.90415, 0, 1.35375, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_gsu1o")
-mesh = SubResource("SphereMesh_p7y3y")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gxt3o")
+
+[node name="MainPlayer" parent="." instance=ExtResource("13_xugyn")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -2.0395, 1.14668)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MainPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.310897, 0)
+light_color = Color(1, 0.818282, 0.520625, 1)
+light_energy = 4.087
+omni_range = 5.42536
 
 [connection signal="area_entered" from="CombinerContent/RectSegment/CollitionDetector" to="." method="_on_collition_detector_area_entered"]
 [connection signal="area_entered" from="90Angle/CollitionDetector" to="." method="_on_collition_detector_area_entered"]
