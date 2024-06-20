@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmsesnj5mmijy"]
+[gd_scene load_steps=20 format=3 uid="uid://bmsesnj5mmijy"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Player/MainPlayer.gd" id="1_dqk6w"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Pixel3DShader.gdshader" id="2_cpuhc"]
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Cameracontent.gd" id="2_ykeem"]
 [ext_resource type="Texture2D" uid="uid://lya24l8ilphl" path="res://Assets/Textures/Objects/ShovelTexture.png" id="4_h5toa"]
 [ext_resource type="ArrayMesh" uid="uid://b1caaypqjhjvo" path="res://Assets/Models/EquipableObjects/Shovel.obj" id="4_wledq"]
+[ext_resource type="PackedScene" uid="uid://dia3y42ocguag" path="res://Components/HitBoxComponent/HitBoxComponent.tscn" id="6_k810k"]
+[ext_resource type="PackedScene" uid="uid://bvbpagquvklfu" path="res://Components/HurtBoxComponent/HurtBoxComponent.tscn" id="7_nef8g"]
 
 [sub_resource type="Animation" id="Animation_wkexs"]
 length = 0.001
@@ -111,6 +113,12 @@ texture_filter = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_xxx22"]
 size = Vector3(1, 1.96, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gmy4o"]
+size = Vector3(1.5, 2, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p5i8x"]
+size = Vector3(1, 3, 1)
+
 [node name="MainPlayer" type="CharacterBody3D"]
 collision_mask = 8
 script = ExtResource("1_dqk6w")
@@ -176,6 +184,19 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91166, 0)
 bus = &"SFX"
 area_mask = 4
+
+[node name="HitBox" parent="." instance=ExtResource("6_k810k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.214111)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2652, -1.22716)
+shape = SubResource("BoxShape3D_gmy4o")
+
+[node name="HurtBox" parent="." instance=ExtResource("7_nef8g")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50918, 0)
+shape = SubResource("BoxShape3D_p5i8x")
 
 [connection signal="timeout" from="Timers/SlideTime" to="." method="_on_slide_time_timeout"]
 [connection signal="finished" from="Sfx/StepsSfx" to="Cameracontent" method="_on_steps_sfx_finished"]

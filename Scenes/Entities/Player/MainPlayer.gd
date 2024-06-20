@@ -19,7 +19,7 @@ var slide_speed := 9
 @onready var player_coll = %PlayerColl.shape as BoxShape3D
 @onready var cameracontent = $Cameracontent as CameraContent
 @onready var interact_detector = %InteractDetector as RayCast3D
-
+@onready var hit_box = %HitBox as Area3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -79,6 +79,10 @@ func _unhandled_input(event):
 		try_interact()
 	
 	if Input.is_action_just_pressed("jump") and not sliding: jumping = true
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		hit_box.hit(HitBox.type_of_hit.LIGHT)
+
 
 func _physics_process(delta):
 	
