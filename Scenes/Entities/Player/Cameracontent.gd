@@ -14,6 +14,14 @@ var is_moving = true
 
 @onready var camera_content_animation = %CameraContentAnimation as AnimationPlayer
 var base_path:= "PlayerCamera/"
+
+
+# Variables para controlar la animación
+var horizontal_amplitude = 0.04 # La amplitud del movimiento horizontal
+var vertical_amplitude = 0.02 # La amplitud del movimiento vertical
+var object_speed = 7.0 # La velocidad del movimiento
+var object_angle = 0.0 # El ángulo inicial
+
 enum camera_animations {
 	WALK,
 	RUN,
@@ -29,7 +37,7 @@ var id_to_string = {
 } as Dictionary
 
 func _ready():
-	pass
+	object_angle = 0.0
 
 
 func start_camera_animation(_animation:camera_animations):
@@ -51,35 +59,55 @@ func _process(delta):
 			var step_sound = randi_range(1,16)
 			steps_sfx.stream = load("res://Assets/Audio/SFX/PlayerActions/MP3 Grass Footsteps/Grass Footstep "+str(step_sound)+" LFD-2.mp3")
 			steps_sfx.play()
+			object_angle += object_speed * delta
 	
 		bobbing_phase += delta * bobbing_speed
+		object_angle += object_speed * delta
+		
 		bobbing_phase = wrapf(bobbing_phase, 0.0, 2.0 * PI)
+
 	else:
 		# Resetear la fase cuando el jugador deja de moverse
 		bobbing_phase = 0.0
+		object_angle = 0
+		
+	#var new_x = sin(object_angle) * horizontal_amplitude
 
+	# Calcular las nuevas posiciones usando la función sin
+	
+	var new_y = sin(object_angle) * (vertical_amplitude * 0.5)
+
+	# Aplicar las nuevas posiciones
+	#%Shovel.position.x = new_x
+	
+	%Shovel.position.y = new_y
+
+	# Aplicar la rotación en el eje Y para un movimiento horizontal
+	
 	# Calcular la nueva posición de la cámara
 	var bobbing_offset = sin(bobbing_phase) * bobbing_amount
 	position.y = bobbing_offset
+	
 
 
 func walk():
 	%StepsSfx.pitch_scale = 0.74
 	bobbing_amount = 0.015
 	bobbing_speed = 12.0
-	
+	object_speed = 3
 
 func run():
 	%StepsSfx.pitch_scale = 1.0
 	bobbing_amount = 0.1
 	bobbing_speed = 10.0
-
+	object_speed = 7
 func crunch():
 	%StepsSfx.pitch_scale = 0.64
 	bobbing_amount = 0.05
 	bobbing_speed = 9.0
-
-
+	object_speed = 4.1
+	object_angle
+	vertical_amplitude = 0.03
 
 func idle():
 
@@ -87,7 +115,8 @@ func idle():
 
 	bobbing_amount = 0.01
 	bobbing_speed = 2.0
-
+	object_speed = 0
+	
 # Actualizar el estado de movimiento (llamar esto desde tu controlador de movimiento)
 func set_moving(moving):
 	is_moving = moving

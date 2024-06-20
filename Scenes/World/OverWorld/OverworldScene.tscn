@@ -1,816 +1,514 @@
-[gd_scene load_steps=13 format=3 uid="uid://bratqsol2mbfu"]
+[gd_scene load_steps=28 format=3 uid="uid://bratqsol2mbfu"]
 
-[ext_resource type="ArrayMesh" uid="uid://c53eyrxdujjd5" path="res://Assets/Models/WorldObjects/Frence.obj" id="1_eh671"]
 [ext_resource type="Script" path="res://Scenes/World/OverWorld/OverworldScene.gd" id="1_jvafl"]
 [ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="2_d8w7f"]
-[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_jxpkx"]
+[ext_resource type="ArrayMesh" uid="uid://dolkqvi3ai5xt" path="res://Assets/Models/Building/OutsideObjects/Gate_Left.obj" id="2_s7e2b"]
+[ext_resource type="ArrayMesh" uid="uid://b4qvtfl8mcgrg" path="res://Assets/Models/Building/OutsideObjects/Fence_No_Pillar.obj" id="4_itdja"]
+[ext_resource type="ArrayMesh" uid="uid://cmqaia677ef3o" path="res://Assets/Models/Building/OutsideObjects/Gate_Right.obj" id="4_s1kve"]
 [ext_resource type="PackedScene" uid="uid://cfcbrbleownhl" path="res://Assets/Models/WorldObjects/WhiteSpruce LFD V1.glb" id="5_x15ma"]
 [ext_resource type="AudioStream" uid="uid://b5gmj8s7e80ki" path="res://Assets/Audio/SFX/Enviroment/Outside Dungeon Ambience LFD Not Redux.mp3" id="6_isb76"]
+[ext_resource type="ArrayMesh" uid="uid://cnonoee1ixiwv" path="res://Assets/Models/Building/OutsideObjects/Fence.obj" id="7_5fawa"]
+[ext_resource type="Script" path="res://Scenes/World/OverWorld/PanteonEntrance.gd" id="8_a10qr"]
+[ext_resource type="ArrayMesh" uid="uid://cl313at5ib22q" path="res://Assets/Models/Building/OutsideObjects/Gate_Pillar_Right.obj" id="8_vn65j"]
+[ext_resource type="PackedScene" uid="uid://d2rl1hollta4a" path="res://Components/WorldObjectsInteract/WorldObjectInteract.tscn" id="9_tytqh"]
+[ext_resource type="AudioStream" uid="uid://byu3hxxvrfdpt" path="res://Assets/Audio/SFX/VoiceActing/VO_2_Processed.mp3" id="12_k0fio"]
+[ext_resource type="Script" path="res://Scenes/World/OverWorld/Cutscene.gd" id="12_lj5xi"]
+[ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="14_62lmm"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_38mpk"]
-size = Vector3(16.3752, 17.5998, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jumex"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ugc73"]
 
 [sub_resource type="FogMaterial" id="FogMaterial_uh8wl"]
-density = 8.0
-albedo = Color(0.529067, 0.529067, 0.529067, 1)
-edge_fade = 3.55062
+density = 0.4115
+emission = Color(0.860369, 0.860369, 0.860369, 1)
+edge_fade = 6.85935
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h84oh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pg62a"]
+size = Vector3(2.5293, 2.42676, 0.0371094)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ob10q"]
-shading_mode = 0
 albedo_texture = ExtResource("2_d8w7f")
 uv1_scale = Vector3(0.161, 0.161, 0.161)
 uv1_triplanar = true
 texture_filter = 0
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_vc6vt"]
+[sub_resource type="BoxMesh" id="BoxMesh_84f7l"]
 
-[sub_resource type="Sky" id="Sky_e48b7"]
-sky_material = SubResource("PhysicalSkyMaterial_vc6vt")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gkjph"]
+sky_top_color = Color(0.11561, 0.167254, 0.352436, 1)
+sky_horizon_color = Color(0.233374, 0.328245, 0.529941, 1)
+sky_curve = 0.130582
+ground_bottom_color = Color(0.113725, 0.168627, 0.352941, 1)
+ground_horizon_color = Color(0.235294, 0.329412, 0.529412, 1)
+ground_curve = 0.538174
+sun_angle_max = 3.32
+sun_curve = 4.47855
+
+[sub_resource type="Sky" id="Sky_lqfwi"]
+sky_material = SubResource("ProceduralSkyMaterial_gkjph")
 
 [sub_resource type="Environment" id="Environment_mspac"]
 background_mode = 2
-sky = SubResource("Sky_e48b7")
+sky = SubResource("Sky_lqfwi")
+ambient_light_color = Color(0, 0, 0.2, 1)
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0394
+volumetric_fog_density = 0.0567
+volumetric_fog_emission = Color(0.445488, 0.445488, 0.445488, 1)
+
+[sub_resource type="Animation" id="Animation_76eti"]
+resource_name = "CutScene"
+length = 25.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Cutscene/CameraPivot/Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene/CameraPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 16.575),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-9.58969e-09, -0.561019, -0.105558), Vector3(0, 0.202458, -0.10472)]
+}
+
+[sub_resource type="Animation" id="Animation_qspeu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene/CameraPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-9.58969e-09, -0.561019, -0.105558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipcn7"]
+_data = {
+"CutScene": SubResource("Animation_76eti"),
+"RESET": SubResource("Animation_qspeu")
+}
 
 [node name="OverworldScene" type="Node3D"]
 script = ExtResource("1_jvafl")
 
 [node name="OverworldObjects" type="Node3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
-[node name="Frences" type="Node3D" parent="OverworldObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3427, -1.57612, -12.2606)
+[node name="Fence" type="Node3D" parent="OverworldObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Frence" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -2.46053, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
-skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="Left" type="Node3D" parent="OverworldObjects/Fence"]
 
-[node name="Frence3" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 3.60214, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar2" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -8.19083)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence3"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence3/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence2" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 0.500985, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar3" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -11.6166)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence2"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence2/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence4" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 6.57399, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar4" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -15.0506)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence4"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence4/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence5" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 9.63515, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar5" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -18.4804)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence5"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence5/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence6" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 15.6978, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar6" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -21.9133)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence6"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence6/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence7" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 12.5967, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar7" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -25.3382)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence7"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence7/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence8" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 18.6697, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar8" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -28.7585)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence8"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence8/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence9" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -26.6694, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar9" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -32.168)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence9"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence9/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence10" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -20.6067, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar10" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.3807, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence10"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence10/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence11" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -23.7079, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar11" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.9549, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence11"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence11/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence12" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -17.6348, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar12" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.52095, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence12"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence12/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence13" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -14.5737, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar13" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.09111, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence13"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence13/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence14" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -8.51101, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar14" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.658294, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence14"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence14/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence15" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -11.6122, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar15" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.76665, 1.98682e-07, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence15"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence15/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence16" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -5.53917, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar16" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.18696, 1.98682e-07, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence16"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence16/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence17" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 46.1339, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar17" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.59643, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence17"]
-collision_layer = 8
+[node name="Fence2" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.8341, 0, -32.392)
+mesh = ExtResource("7_5fawa")
+skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence17/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence18" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 52.1966, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="Fence" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -21.5955, 0, -1.16147)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence18"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence18/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence19" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 49.0954, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="GatePillarRight" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5258, 0.068, -0.971516)
+mesh = ExtResource("8_vn65j")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence19"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence19/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence20" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 55.1684, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="GateRight" type="MeshInstance3D" parent="OverworldObjects/Fence/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5258, 0.068, -0.739928)
+mesh = ExtResource("4_s1kve")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence20"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence20/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="Left4" type="Node3D" parent="OverworldObjects/Fence"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.227, 0, -10.775)
 
-[node name="Frence21" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 58.2296, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar2" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -8.19083)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence21"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence21/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence22" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 64.2923, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar3" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -11.6166)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence22"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence22/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence23" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 61.1912, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar4" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -15.0506)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence23"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence23/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence24" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 67.2642, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar5" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -18.4804)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence24"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence24/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence25" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 21.9251, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar6" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -21.9133)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence25"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence25/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence26" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 27.9878, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar7" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -25.3382)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence26"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence26/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence27" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 24.8866, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar8" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -28.7585)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence27"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence27/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence28" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 30.9597, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar9" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -32.168)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence28"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence28/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence29" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 34.0208, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar10" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.3807, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence29"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence29/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence30" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 40.0835, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar11" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.9549, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence30"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence30/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence31" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 36.9823, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar12" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.52095, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence31"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence31/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence32" type="MeshInstance3D" parent="OverworldObjects/Frences"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 43.0553, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar13" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.09111, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences/Frence32"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences/Frence32/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frences2" type="Node3D" parent="OverworldObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1677, -1.57612, -42.8285)
-
-[node name="Frence" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -2.46053, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar14" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.658294, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence3" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 3.60214, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar15" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.76665, 1.98682e-07, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence3"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence3/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence2" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 0.500985, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar16" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.18696, 1.98682e-07, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence2"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence2/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence4" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 6.57399, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar17" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.59643, 0, -32.372)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence4"]
-collision_layer = 8
+[node name="Fence2" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.8341, 0, -32.392)
+mesh = ExtResource("7_5fawa")
+skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence4/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence5" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 9.63515, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="Fence" type="MeshInstance3D" parent="OverworldObjects/Fence/Left4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -21.5955, 0, -1.16147)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence5"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence5/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="Left2" type="Node3D" parent="OverworldObjects/Fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -0.315)
 
-[node name="Frence6" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 15.6978, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar2" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -10.1217)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence6"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence6/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence7" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 12.5967, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar3" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -13.5475)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence7"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence7/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
 
-[node name="Frence8" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 18.6697, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar4" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -16.9815)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence8"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence8/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence9" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -26.6694, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar5" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -20.4113)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence9"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence9/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence10" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -20.6067, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar6" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -23.8442)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence10"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence10/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence11" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -23.7079, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar7" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -27.2691)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence11"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence11/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence12" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -17.6348, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar8" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -30.6894)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence12"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence12/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence13" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -14.5737, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar9" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -34.0989)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence13"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence13/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence14" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -8.51101, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="Fence" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -21.5955, 0, -3.09237)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence14"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence14/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence15" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -11.6122, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="GatePillarRight" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5258, 0.068, -2.90242)
+mesh = ExtResource("8_vn65j")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence15"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence15/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="GateLeft" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -21.5136, 0.068, -2.68032)
+mesh = ExtResource("2_s7e2b")
+skeleton = NodePath("../../../..")
 
-[node name="Frence16" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -5.53917, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar18" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -14.3807, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence16"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence16/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence17" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 46.1339, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar19" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -10.9549, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence17"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence17/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence18" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 52.1966, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar20" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -7.52095, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence18"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence18/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence19" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 49.0954, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar21" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -4.09111, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence19"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence19/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence20" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 55.1684, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar22" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -0.658294, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence20"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence20/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence21" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 58.2296, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar23" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, 2.76665, 1.98682e-07, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence21"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence21/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence22" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 64.2923, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar24" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, 6.18696, 1.98682e-07, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence22"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence22/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence23" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 61.1912, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar25" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, 9.59643, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence23"]
-collision_layer = 8
+[node name="Fence3" type="MeshInstance3D" parent="OverworldObjects/Fence/Left2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, 1, 0, 4.37114e-08, -21.8341, 0, -34.313)
+mesh = ExtResource("7_5fawa")
+skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence23/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="Left3" type="Node3D" parent="OverworldObjects/Fence"]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, -1, -8.74228e-08, 1, 0, -1, -8.74228e-08, 4.37114e-08, 6.374, 0, 12.416)
 
-[node name="Frence24" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 67.2642, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar2" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -10.1217)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence24"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence24/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence25" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 21.9251, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar3" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -13.5475)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence25"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence25/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence26" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 27.9878, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar4" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -16.9815)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence26"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence26/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence27" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 24.8866, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar5" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -20.4113)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence27"]
-collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence27/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
-
-[node name="Frence28" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 30.9597, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar6" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -23.8442)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence28"]
-collision_layer = 8
+[node name="FenceNoPillar7" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -27.2691)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence28/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="FenceNoPillar8" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5965, 1.98682e-07, -30.6894)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="Frence29" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 34.0208, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar9" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5958, 0, -34.0989)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence29"]
-collision_layer = 8
+[node name="Fence" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -21.5955, 0, -3.09237)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence29/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="FenceNoPillar18" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -14.3807, 0, -34.313)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="Frence30" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 40.0835, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar19" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -10.9549, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence30"]
-collision_layer = 8
+[node name="FenceNoPillar20" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -7.52095, 0, -34.313)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence30/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="FenceNoPillar21" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -4.09111, 0, -34.313)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="Frence31" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 36.9823, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar22" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, -0.658294, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence31"]
-collision_layer = 8
+[node name="FenceNoPillar23" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, 2.76665, 1.98682e-07, -34.313)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence31/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="FenceNoPillar24" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, 6.18696, 1.98682e-07, -34.313)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="Frence32" type="MeshInstance3D" parent="OverworldObjects/Frences2"]
-transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 43.0553, 2.43367, 26.4448)
-mesh = ExtResource("1_eh671")
+[node name="FenceNoPillar25" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, -1, 0, 4.37114e-08, 9.59643, 0, -34.313)
+mesh = ExtResource("4_itdja")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="OverworldObjects/Frences2/Frence32"]
-collision_layer = 8
+[node name="FenceNoPillar26" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-0.0516563, -0.335119, -0.940759, -4.1519e-09, 0.942016, -0.335567, -0.998665, 0.0173341, 0.048661, 13.5502, 0.00742589, -34.2165)
+mesh = ExtResource("4_itdja")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverworldObjects/Frences2/Frence32/StaticBody3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
-shape = SubResource("BoxShape3D_38mpk")
+[node name="Fence3" type="MeshInstance3D" parent="OverworldObjects/Fence/Left3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, 1, 0, 4.37114e-08, -21.8341, 0, -34.313)
+mesh = ExtResource("7_5fawa")
+skeleton = NodePath("../../../..")
 
 [node name="Brushes" type="Node3D" parent="OverworldObjects"]
 unique_name_in_owner = true
@@ -821,41 +519,136 @@ unique_name_in_owner = true
 [node name="WhiteSpruce LFD V1" parent="OverworldObjects/Trees" instance=ExtResource("5_x15ma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -24)
 
+[node name="WhiteSpruce LFD V3" parent="OverworldObjects/Trees" instance=ExtResource("5_x15ma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.242, 0, 9.397)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OverworldObjects/Trees/WhiteSpruce LFD V3"]
+transform = Transform3D(0.0207923, 0, -0.977162, 0, 1, 0, 0.517681, 0, 0.0392469, -0.218, 6.03, -0.0389996)
+material_override = SubResource("StandardMaterial3D_jumex")
+mesh = SubResource("QuadMesh_ugc73")
+
+[node name="WhiteSpruce LFD V2" parent="OverworldObjects/Trees" instance=ExtResource("5_x15ma")]
+transform = Transform3D(1, 0, 0, 0, 0.882127, -0.471012, 0, 0.471012, 0.882127, 48.7264, -0.987924, -5.84329)
+
 [node name="Fog" type="Node3D" parent="OverworldObjects"]
 
 [node name="FogVolume" type="FogVolume" parent="OverworldObjects/Fog"]
-transform = Transform3D(4.81766, 0, 0, 0, 1, 0, 0, 0, 1, -48.5549, 15.708, 0)
-size = Vector3(2, 31.5956, 307.707)
+transform = Transform3D(4.81766, 0, 0, 0, 1, 0, 0, 0, 1, -48.5549, 2.73119, 0)
+size = Vector3(6.15401, 13.312, 138.399)
 material = SubResource("FogMaterial_uh8wl")
+
+[node name="FogVolume2" type="FogVolume" parent="OverworldObjects/Fog"]
+transform = Transform3D(0.0356514, 0, 0.999972, 0, 1, 0, -4.81753, 0, 0.00740016, 2.22369, 2.73119, 74.2455)
+size = Vector3(6.15401, 13.312, 138.399)
+material = SubResource("FogMaterial_uh8wl")
+
+[node name="FogVolume3" type="FogVolume" parent="OverworldObjects/Fog"]
+transform = Transform3D(0.0356514, 0, 0.999972, 0, 1, 0, -4.81753, 0, 0.00740016, 2.22369, 2.73119, -77.6965)
+size = Vector3(6.15401, 13.312, 138.399)
+material = SubResource("FogMaterial_uh8wl")
+
+[node name="FogVolume4" type="FogVolume" parent="OverworldObjects/Fog"]
+transform = Transform3D(4.81753, 0, -0.0074002, 0, 1, 0, 0.0356517, 0, 0.999972, 87.247, 2.73119, -14.2087)
+size = Vector3(7.2937, 13.312, 201.149)
+material = SubResource("FogMaterial_uh8wl")
+
+[node name="Panteon" type="CSGBox3D" parent="OverworldObjects"]
+transform = Transform3D(1.36868, 0, 0.951046, 0, 1.66667, 0, -0.951046, 0, 1.36868, 49.262, 2.2598, 4.35475)
+size = Vector3(3.03467, 2.63232, 6.22571)
+
+[node name="PanteonEntrance" type="CSGBox3D" parent="OverworldObjects"]
+transform = Transform3D(1.36868, 0, 0.951046, 0, 1.66667, 0, -0.951046, 0, 1.36868, 46.2868, 2.0947, 0.116122)
+size = Vector3(2.55652, 2.4342, 0.0121002)
+material = SubResource("StandardMaterial3D_h84oh")
+script = ExtResource("8_a10qr")
+
+[node name="WorldObjectInteract" parent="OverworldObjects/PanteonEntrance" instance=ExtResource("9_tytqh")]
+
+[node name="CollisionShape3D" parent="OverworldObjects/PanteonEntrance/WorldObjectInteract" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.999991, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_pg62a")
 
 [node name="Ground" type="CSGBox3D" parent="OverworldObjects"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68097, -0.272611, -0.251849)
 use_collision = true
 collision_layer = 8
-size = Vector3(127.799, 0.27124, 237.805)
+size = Vector3(89.266, 0, 112.361)
 material = SubResource("StandardMaterial3D_ob10q")
 
 [node name="Ground2" type="CSGBox3D" parent="OverworldObjects"]
 unique_name_in_owner = true
-transform = Transform3D(0.505683, 0, 0, 0, 1, 0, 0, 0, 1, -129.054, 0, -1.2583)
+transform = Transform3D(0.505683, 0, 0, 0, 1, 0, 0, 0, 1, -1.20804, 0, -1.2583)
 use_collision = true
 collision_layer = 8
-size = Vector3(265.15, 0.27124, 65.0586)
+size = Vector3(398.723, 0.27124, 280.197)
 material = SubResource("StandardMaterial3D_ob10q")
 
-[node name="MainPlayer" parent="." instance=ExtResource("2_jxpkx")]
-transform = Transform3D(0.0412304, 0, -0.99915, 0, 1, 0, 0.99915, 0, 0.0412304, -36.611, 0.327995, 0)
-speed = 3.0
+[node name="Tombostone" type="Node3D" parent="OverworldObjects"]
+
+[node name="Tombstone" type="MeshInstance3D" parent="OverworldObjects/Tombostone"]
+unique_name_in_owner = true
+transform = Transform3D(0.143951, 0, 0, 0, 1.15917, 0, 0, 0, 1, 0, 0.710836, 0)
+mesh = SubResource("BoxMesh_84f7l")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mspac")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.471018, -0.100269, -0.876406, 0.83235, -0.278493, 0.479203, -0.292122, -0.95519, -0.0477166, 0, 9.37987, 0)
-light_energy = 0.407
-light_volumetric_fog_energy = 2.695
+transform = Transform3D(0.168456, -0.100503, 0.980572, -0.941428, 0.278409, 0.190267, -0.292122, -0.95519, -0.0477163, 0, 9.37987, 0)
+light_energy = 16.0
+light_angular_distance = 10.38
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.73
+directional_shadow_max_distance = 0.0
+directional_shadow_pancake_size = 0.0
+sky_mode = 2
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.462802, -0.0975227, -0.881081, 0.836946, -0.279466, 0.470552, -0.292122, -0.95519, -0.0477163, 0, 9.37987, 0)
+light_color = Color(0.0162871, 0.0122926, 0.258796, 1)
+light_energy = 0.063
+light_indirect_energy = 1.248
+light_volumetric_fog_energy = 6.926
+directional_shadow_mode = 0
+sky_mode = 1
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_isb76")
 autoplay = true
+
+[node name="Cutscene" type="Node3D" parent="."]
+script = ExtResource("12_lj5xi")
+
+[node name="CutSceneAnimation" type="AnimationPlayer" parent="Cutscene"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ipcn7")
+}
+
+[node name="CameraPivot" type="Node3D" parent="Cutscene"]
+transform = Transform3D(0.842001, 0.0892115, -0.532049, -0.105362, 0.994434, 9.58969e-09, 0.529088, 0.0560578, 0.846713, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Cutscene/CameraPivot"]
+transform = Transform3D(-2.98023e-08, -0.0363472, -0.999339, -1.86265e-09, 0.999339, -0.0363472, 1, 3.72529e-09, -4.47035e-08, -19.385, 1.69193, 1.85574)
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Cutscene/CameraPivot/Camera3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.404, -0.396, -0.765)
+stream = ExtResource("12_k0fio")
+autoplay = true
+
+[node name="Canvas" type="CanvasLayer" parent="Cutscene"]
+unique_name_in_owner = true
+
+[node name="ColorRect" type="ColorRect" parent="Cutscene/Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.105882, 0.105882, 1)
+
+[node name="MainPlayer" parent="." instance=ExtResource("14_62lmm")]
+
+[editable path="OverworldObjects/PanteonEntrance/WorldObjectInteract"]

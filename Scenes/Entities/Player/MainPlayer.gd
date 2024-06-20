@@ -18,6 +18,7 @@ var slide_speed := 9
 @onready var player_camera = %PlayerCamera as Camera3D
 @onready var player_coll = %PlayerColl.shape as BoxShape3D
 @onready var cameracontent = $Cameracontent as CameraContent
+@onready var interact_detector = %InteractDetector as RayCast3D
 
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -68,6 +69,10 @@ func _unhandled_input(event):
 		crunching = false
 		modify_camera(0.653,0.9,1.0)
 		modify_camera()
+	
+	if event.is_action_pressed("Interact"):
+		print("A")
+		try_interact()
 	
 	if Input.is_action_just_pressed("jump") and not sliding: jumping = true
 
@@ -178,6 +183,10 @@ func modify_camera(_player_coll_pos=1.302,_player_coll_size=2.0,_player_camera_p
 		player_camera.position.y = _player_camera_position
 		player_camera.rotation_degrees.z = _player_camera_rotation
 
+func try_interact():
+	if interact_detector.is_colliding():
+		var collision_object =  interact_detector.get_collider() as WorldObjectInteract
+		collision_object.interact()
 
 #region SIGNALS
 # GINALS

@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu5qu7hhvyx4"
+uid="uid://g07j7gjm5m0i"
 path.s3tc="res://.godot/imported/Barrel With Texture LFD V1-13ecdc17fe09b52da9d5cff4d706340d_BarrelBlender4k_Normal.png-ffb47822466a336f3dcea88f37c83057.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "6ef714d32f3d81a76ce802b026416a3e"
 }
 
 [deps]

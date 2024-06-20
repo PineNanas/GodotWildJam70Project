@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Godot Wild Jam 70 Project"
-run/main_scene="res://Scenes/World/OverWorld/OverworldScene.tscn"
+run/main_scene="res://Scenes/GUI/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.109804, 0.105882, 0.105882, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,6 +25,8 @@ CONFIGAUTOLOAD="*res://Autoloads/BaseConfiguratios.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
+window/stretch/aspect="ignore"
 
 [file_customization]
 
@@ -76,6 +80,11 @@ enter={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+Interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -84,3 +93,7 @@ enter={
 3d_physics/layer_4="StaticsBody"
 3d_physics/layer_12="WorldInteractArea"
 3d_physics/layer_20="HurtBoxComponent"
+
+[physics]
+
+3d/run_on_separate_thread=true
