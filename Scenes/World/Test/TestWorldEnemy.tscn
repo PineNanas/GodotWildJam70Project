@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsxxem3lk4jhb"]
+[gd_scene load_steps=11 format=3 uid="uid://bsxxem3lk4jhb"]
 
+[ext_resource type="Script" path="res://Scenes/World/Test/TestWorldEnemy.gd" id="1_btdoa"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="1_r4bcv"]
 [ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="2_l1nmo"]
 [ext_resource type="PackedScene" uid="uid://wygekfevvnvx" path="res://Scenes/Entities/Enemies/PatrolPoint.tscn" id="4_bpnwc"]
@@ -31,6 +32,7 @@ texture_filter = 1
 
 [node name="TestWorldEnemy" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6225, 1.30128, 4.08968)
+script = ExtResource("1_btdoa")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.956279, -0.292455, 3.32724e-08, -0.013955, -0.0456304, 0.998861, -0.292122, -0.95519, -0.0477166, 0, 25.543, 0)
