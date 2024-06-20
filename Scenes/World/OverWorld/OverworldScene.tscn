@@ -66,7 +66,7 @@ resource_name = "CutScene"
 length = 25.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Cutscene/CameraPivot/Camera3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -632,6 +632,7 @@ transform = Transform3D(0.842001, 0.0892115, -0.532049, -0.105362, 0.994434, 9.5
 
 [node name="Camera3D" type="Camera3D" parent="Cutscene/CameraPivot"]
 transform = Transform3D(-2.98023e-08, -0.0363472, -0.999339, -1.86265e-09, 0.999339, -0.0363472, 1, 3.72529e-09, -4.47035e-08, -19.385, 1.69193, 1.85574)
+current = true
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Cutscene/CameraPivot/Camera3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.404, -0.396, -0.765)
@@ -647,6 +648,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.109804, 0.105882, 0.105882, 1)
 
 [node name="MainPlayer" parent="." instance=ExtResource("14_62lmm")]

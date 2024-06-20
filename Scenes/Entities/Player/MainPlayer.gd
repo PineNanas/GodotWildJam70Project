@@ -42,11 +42,15 @@ var walk_vel: Vector3 # Walking velocity
 var grav_vel: Vector3 # Gravity velocity 
 var jump_vel: Vector3 # Jumping velocity
 
+func _ready():
+	CONFIGAUTOLOAD.basic_autoconfig()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and not sliding:
+		
 		look_dir = event.relative * 0.001
 		if CONFIGAUTOLOAD.mouse_captured: _rotate_camera()
+
 	
 	if event.is_action_pressed("shift") and !runing and !crunching:
 		disabled_all_movement_bools()
@@ -173,6 +177,7 @@ func disabled_all_movement_bools():
 	crunching = false
 
 func _rotate_camera(sens_mod: float = 1.0) -> void:
+	
 	rotation.y -= look_dir.x * camera_sens * sens_mod
 	player_camera.rotation.x = clamp(player_camera.rotation.x - look_dir.y * camera_sens * sens_mod, -1.5, 1.5)
 
