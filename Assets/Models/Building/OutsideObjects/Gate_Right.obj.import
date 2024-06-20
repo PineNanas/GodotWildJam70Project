@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmqaia677ef3o"
+path="res://.godot/imported/Gate_Right.obj-a7cea1c1ab050555acbd6c3f18be1efd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Gate_Right.obj-a7cea1c1ab050555acbd6c3f18be1efd.mesh"]
+
+source_file="res://Assets/Models/Building/OutsideObjects/Gate_Right.obj"
+dest_files=["res://.godot/imported/Gate_Right.obj-a7cea1c1ab050555acbd6c3f18be1efd.mesh", "res://.godot/imported/Gate_Right.obj-a7cea1c1ab050555acbd6c3f18be1efd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

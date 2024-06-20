@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwkuwcl33jn1r"]
+[gd_scene load_steps=20 format=3 uid="uid://cwkuwcl33jn1r"]
 
 [ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="1_2gyu5"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_vbv0v"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dtlyhb8mj8xh" path="res://Assets/Models/Building/MazeObjects/Rock3 LFD V1.fbx" id="7_8sy33"]
 [ext_resource type="PackedScene" uid="uid://cnci33fvlntx2" path="res://Assets/Models/Building/MazeObjects/Rock2 LFD V1.fbx" id="8_ghtdi"]
 [ext_resource type="PackedScene" uid="uid://djefei6fxmdd2" path="res://Assets/Models/Building/MazeObjects/Rock1 LFD V1.fbx" id="9_p0u1k"]
+[ext_resource type="ArrayMesh" uid="uid://c0bly63j5oxoe" path="res://Assets/Models/Building/Ceilings/Ceiling_1.obj" id="10_dcx24"]
+[ext_resource type="Texture2D" uid="uid://cepb4fcj3jiy7" path="res://Assets/Textures/DungeonTexture/Cell1.png" id="11_8n1vp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm47x"]
 shading_mode = 0
@@ -40,6 +42,9 @@ density = 1.532
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1nbwn"]
 size = Vector3(16.3752, 17.5998, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxsyt"]
+albedo_texture = ExtResource("11_8n1vp")
 
 [node name="TestWorld" type="Node3D"]
 
@@ -355,3 +360,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.23699, 1.57723, -0.911232)
 
 [node name="Root Scene5" parent="." instance=ExtResource("9_p0u1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96222, 1.57723, -1.95904)
+
+[node name="Ceiling1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.990993, -0.133917, 0, 0.133917, -0.990993, 0, 0, 0, 1, -7.24546, 6.03824, 0.59842)
+mesh = ExtResource("10_dcx24")
+surface_material_override/0 = SubResource("StandardMaterial3D_fxsyt")

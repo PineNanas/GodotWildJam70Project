@@ -1,0 +1,383 @@
+[gd_scene load_steps=17 format=3 uid="uid://dko6d1j8ktf8s"]
+
+[ext_resource type="Script" path="res://Scenes/GUI/MainMenu.gd" id="1_b8swa"]
+[ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="1_njh2s"]
+[ext_resource type="ArrayMesh" uid="uid://c53eyrxdujjd5" path="res://Assets/Models/WorldObjects/Frence.obj" id="2_ukwd1"]
+[ext_resource type="PackedScene" uid="uid://cfcbrbleownhl" path="res://Assets/Models/WorldObjects/WhiteSpruce LFD V1.glb" id="4_5wk6h"]
+[ext_resource type="PackedScene" uid="uid://bmxk8j1xipc2s" path="res://Assets/Models/WorldObjects/dead_bushes.glb" id="5_m40jb"]
+[ext_resource type="Texture2D" uid="uid://dw28ng2lw8rpp" path="res://Assets/Textures/GUI/Fonts/PlayTexture.png" id="6_hdtqm"]
+[ext_resource type="Texture2D" uid="uid://c1li68nqmlgyn" path="res://Assets/Textures/GUI/IntroSplash/splatter.png" id="6_v2h5a"]
+[ext_resource type="Texture2D" uid="uid://bbv3rftpdsxhv" path="res://Assets/Textures/GUI/Fonts/ExitTexture.png" id="7_3ni20"]
+[ext_resource type="AudioStream" uid="uid://b5gmj8s7e80ki" path="res://Assets/Audio/SFX/Enviroment/Outside Dungeon Ambience LFD Not Redux.mp3" id="7_42wan"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5did"]
+albedo_texture = ExtResource("1_njh2s")
+uv1_scale = Vector3(0.36, 0.36, 0.36)
+uv1_triplanar = true
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_18dr4"]
+
+[sub_resource type="Sky" id="Sky_3vaqx"]
+sky_material = SubResource("PhysicalSkyMaterial_18dr4")
+
+[sub_resource type="Environment" id="Environment_uvo7b"]
+background_mode = 2
+sky = SubResource("Sky_3vaqx")
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 2.09
+fog_density = 0.0039
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0394
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1fb7t"]
+size = Vector3(16.3752, 17.5998, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2xbq"]
+shading_mode = 0
+albedo_texture = ExtResource("1_njh2s")
+uv1_scale = Vector3(0.161, 0.161, 0.161)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="FogMaterial" id="FogMaterial_a5bln"]
+density = 2.0586
+albedo = Color(0.620167, 0.620167, 0.620167, 1)
+edge_fade = 11.536
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_b8swa")
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="Enviroment"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9833, 0, 56.6469)
+size = Vector3(86.1041, 0.001, 107.096)
+material = SubResource("StandardMaterial3D_h5did")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_uvo7b")
+
+[node name="Objects" type="Node3D" parent="Enviroment"]
+
+[node name="Frences" type="Node3D" parent="Enviroment/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.340465, -1.60397, 1.19555)
+
+[node name="Frence" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, -2.46053, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence3" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 3.60214, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence3"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence3/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence2" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 0.500985, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence2"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence2/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence4" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 6.57399, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence4"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence4/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence5" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 9.63515, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence5"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence5/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence6" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 15.6978, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence6"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence6/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence7" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 12.5967, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence7"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence7/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence8" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 18.6697, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence8"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence8/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence9" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 21.5095, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence9"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence9/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence10" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 27.5722, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence10"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence10/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence11" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 24.4711, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence11"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence11/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence12" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 30.5441, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence12"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence12/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence13" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 33.6052, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence13"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence13/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence14" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(0.175674, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 39.6679, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence14"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence14/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="Frence15" type="MeshInstance3D" parent="Enviroment/Objects/Frences"]
+transform = Transform3D(-0.185013, 0, 0, 0, 0.175674, 0, 0, 0, 0.175674, 36.5668, 2.43367, -0.218901)
+mesh = ExtResource("2_ukwd1")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Objects/Frences/Frence15"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Objects/Frences/Frence15/StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 4.10164, -1.44879)
+shape = SubResource("BoxShape3D_1fb7t")
+
+[node name="OverworldObjects" type="Node3D" parent="Enviroment/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65898, 0, -13.747)
+
+[node name="Trees" type="Node3D" parent="Enviroment/Objects/OverworldObjects"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54968, 0, 14.2369)
+
+[node name="WhiteSpruce LFD V1" parent="Enviroment/Objects/OverworldObjects/Trees" instance=ExtResource("4_5wk6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.591763, 0, 4.23846)
+
+[node name="Pl" type="CSGBox3D" parent="Enviroment/Objects/OverworldObjects"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0689, 0, 58.2384)
+use_collision = true
+collision_layer = 8
+size = Vector3(83.6612, 0.27124, 118.812)
+material = SubResource("StandardMaterial3D_f2xbq")
+
+[node name="Brushes" type="Node3D" parent="Enviroment/Objects/OverworldObjects"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="Enviroment/Objects"]
+transform = Transform3D(-0.757682, 0.0470169, -0.650928, -0.00864689, 0.996591, 0.0820494, 0.652566, 0.0677959, -0.754692, -2.07862, 2.27623, -2.47971)
+
+[node name="Bushes" parent="Enviroment/Objects/Camera3D" instance=ExtResource("5_m40jb")]
+transform = Transform3D(-0.757682, -0.00864689, 0.652566, 0.0470169, 0.996591, 0.0677959, -0.650928, 0.0820494, -0.754692, 0.751993, -1.89812, -2.95498)
+
+[node name="Bush 1" parent="Enviroment/Objects/Camera3D/Bushes/Sketchfab_model/00d1b47a2b4b4e27a4d6a55ef738090e_fbx/RootNode" index="0"]
+transform = Transform3D(100, -2.27374e-13, 0, 2.84217e-14, -1.62921e-05, 100, -4.54747e-13, -100, -1.62921e-05, -10.5544, 0, -11.8605)
+
+[node name="Bush 2" parent="Enviroment/Objects/Camera3D/Bushes/Sketchfab_model/00d1b47a2b4b4e27a4d6a55ef738090e_fbx/RootNode" index="1"]
+transform = Transform3D(100, 0, 0, 1.98523e-21, -1.62921e-05, 100, 0, -100, -1.62921e-05, 24.05, 0, -15.4135)
+
+[node name="Bush 3" parent="Enviroment/Objects/Camera3D/Bushes/Sketchfab_model/00d1b47a2b4b4e27a4d6a55ef738090e_fbx/RootNode" index="2"]
+transform = Transform3D(100, -2.27374e-13, 0, 2.84217e-14, -1.62921e-05, 100, -4.54747e-13, -100, -1.62921e-05, 37.7855, 0, -39.7665)
+
+[node name="Bush 4" parent="Enviroment/Objects/Camera3D/Bushes/Sketchfab_model/00d1b47a2b4b4e27a4d6a55ef738090e_fbx/RootNode" index="3"]
+transform = Transform3D(100, 0, 0, 1.98523e-21, -1.62921e-05, 100, 0, -100, -1.62921e-05, -8.83172, 0, -78.1876)
+
+[node name="Bush 5" parent="Enviroment/Objects/Camera3D/Bushes/Sketchfab_model/00d1b47a2b4b4e27a4d6a55ef738090e_fbx/RootNode" index="4"]
+transform = Transform3D(100, 0, 0, 1.98523e-21, -1.62921e-05, 100, 0, -100, -1.62921e-05, 61.7768, 0, 22.3283)
+
+[node name="WaySign" type="Node3D" parent="Enviroment/Objects"]
+
+[node name="stick" type="CSGCylinder3D" parent="Enviroment/Objects/WaySign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732698, 1.19361, -0.0189799)
+radius = 0.0516064
+height = 2.61036
+
+[node name="stick2" type="CSGCylinder3D" parent="Enviroment/Objects/WaySign"]
+transform = Transform3D(0.990788, -0.130782, 0.0351325, 0.134863, 0.976408, -0.168637, -0.0122491, 0.171822, 0.985052, -0.784633, 2.9394, 0.0709081)
+radius = 0.0516064
+height = 0.95895
+
+[node name="BigWood" type="CSGPolygon3D" parent="Enviroment/Objects/WaySign"]
+transform = Transform3D(0.783363, -0.117832, 0.0249247, 0.0929529, 0.993034, 0.00295753, -0.614574, 0, 0.0322175, -1.12705, 2.37653, 0.288529)
+polygon = PackedVector2Array(-0.337016, 0.929531, -0.380616, 0.593441, -0.32884, 0.58657, -0.399856, 0.562487, -0.381125, 0.159791, 1.10473, 0.235586, 1.43221, 0.548611, 1.37998, 0.548614, 1.46549, 0.57616, 1.02644, 0.846627)
+
+[node name="Sprite3D" type="Sprite3D" parent="Enviroment/Objects/WaySign/BigWood"]
+transform = Transform3D(0.207653, 3.75094e-09, 1.62981e-08, -1.2311e-08, 0.207653, -9.11255e-10, 9.53674e-07, -3.54181e-07, 0.207653, 0.407467, 0.549441, -1.53583)
+flip_h = true
+texture = ExtResource("6_hdtqm")
+
+[node name="TinyWood" type="CSGPolygon3D" parent="Enviroment/Objects/WaySign"]
+transform = Transform3D(0.786776, 0.072629, 0.0250333, -0.057294, 0.997359, -0.00182296, -0.614574, 5.24528e-09, 0.0322175, -1.28503, 1.74383, 0.339434)
+polygon = PackedVector2Array(0.309003, 0.621209, 0.0943674, 0.500871, 0.293517, 0.421023, 1.04774, 0.438754, 1.11905, 0.528865, 1.12411, 0.494913, 1.12596, 0.592337, 1.02146, 0.608905, 1.11963, 0.620648, 1.05093, 0.714626)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Enviroment/Objects/WaySign/TinyWood"]
+transform = Transform3D(0.0875013, 5.6522e-05, -0.00603772, 0.0058667, 0.0851814, 0.0802362, 0.00206196, -0.244733, 0.0279256, 0.699277, 0.548456, -1.2567)
+flip_h = true
+texture = ExtResource("7_3ni20")
+
+[node name="Fog" type="Node3D" parent="Enviroment"]
+
+[node name="FogVolume" type="FogVolume" parent="Enviroment/Fog"]
+transform = Transform3D(4.67583, 0, 0.240855, 0, 1, 0, -1.16036, 0, 0.970561, -11.6185, -1.63608, 8.96079)
+size = Vector3(2, 14.2482, 68.1295)
+material = SubResource("FogMaterial_a5bln")
+
+[node name="FogVolume2" type="FogVolume" parent="Enviroment/Fog"]
+transform = Transform3D(4.80633, 0, 0.0685375, 0, 1, 0, -0.330192, 0, 0.997649, 68.8777, -1.63608, 60.8683)
+size = Vector3(2, 14.2482, 177.223)
+material = SubResource("FogMaterial_a5bln")
+
+[node name="FogVolume3" type="FogVolume" parent="Enviroment/Fog"]
+transform = Transform3D(0.720494, 0, -0.988754, 0, 1, 0, 4.76348, 0, 0.149552, 28.955, -1.63608, 107.311)
+size = Vector3(2, 14.2482, 181.909)
+material = SubResource("FogMaterial_a5bln")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(0.471018, -0.100269, -0.876406, 0.83235, -0.278493, 0.479203, -0.292122, -0.95519, -0.0477166, 0, 9.37987, 0)
+light_energy = 0.407
+light_volumetric_fog_energy = 2.695
+
+[node name="EnterButton" type="Area3D" parent="."]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="EnterButton"]
+transform = Transform3D(0.78786, 0, 0.0277134, 0, 1, 0, -0.615854, 0, 0.0354537, -0.8651, -0.0220993, -0.0822465)
+polygon = PackedVector2Array(-0.835732, 2.53082, 0.68445, 2.74606, 0.978097, 3.09883, 0.522979, 3.32754, -0.817459, 3.28549)
+
+[node name="ExitButon" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.732564, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ExitButon"]
+transform = Transform3D(0.78786, 0, 0.0277134, 0, 1, 0, -0.615854, 0, 0.0354537, -0.8651, -0.0220993, -0.0822465)
+polygon = PackedVector2Array(-0.27337, 2.90946, 0.47235, 2.87989, 0.562223, 2.95447, 0.544662, 3.10656, 0.489906, 3.16052, -0.231721, 3.10269, -0.463545, 3.00562)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.109804, 0.105882, 0.105882, 1)
+
+[node name="SplashScreenIntro" type="Node2D" parent="GUI"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/SplashScreenIntro"]
+position = Vector2(640, 360)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("6_v2h5a")
+
+[node name="BGsound" type="AudioStreamPlayer2D" parent="GUI"]
+unique_name_in_owner = true
+stream = ExtResource("7_42wan")
+volume_db = -50.0
+autoplay = true
+
+[connection signal="input_event" from="EnterButton" to="." method="_on_enter_button_input_event"]
+[connection signal="input_event" from="ExitButon" to="." method="_on_exit_buton_input_event"]
+
+[editable path="Enviroment/Objects/OverworldObjects/Trees/WhiteSpruce LFD V1"]
+[editable path="Enviroment/Objects/Camera3D/Bushes"]

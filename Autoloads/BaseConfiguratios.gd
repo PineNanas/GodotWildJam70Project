@@ -11,7 +11,7 @@ var maze_info = load("res://Resources/MazeResources/MazeMapsInfo.gd")
 var mouse_captured:= false
 
 func _ready():
-	basic_autoconfig()
+	
 	pass
 	
 func save_new_map(_map):
