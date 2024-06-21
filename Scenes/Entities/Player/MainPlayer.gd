@@ -81,7 +81,10 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("jump") and not sliding: jumping = true
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		hit_box.hit(HitBox.type_of_hit.LIGHT)
+		attack(HitBox.type_of_hit.LIGHT)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		attack(HitBox.type_of_hit.HEAVY)
 
 
 func _physics_process(delta):
@@ -200,6 +203,10 @@ func try_interact():
 func take_damage(damage: int):
 	print("Player take damage: ", damage)
 
+func attack(type: HitBox.type_of_hit):
+	print("Player attack: ", type)
+	hit_box.hit(type)
+	
 #region SIGNALS
 # GINALS
 
