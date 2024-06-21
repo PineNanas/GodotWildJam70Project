@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://Components/HurtBoxComponent/HurtBoxComponent.gd" id="1_1in5d"]
 
 [node name="HurtBoxComponent" type="Area3D"]
+collision_layer = 524288
+collision_mask = 262144
 script = ExtResource("1_1in5d")

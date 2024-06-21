@@ -55,10 +55,17 @@ autostart = true
 wait_time = 12.0
 one_shot = true
 
+[node name="AttackAnimationTimer" type="Timer" parent="."]
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [node name="AttackTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="CharacterRotationRoot/ChaseArea" to="." method="_on_chase_area_body_entered"]
 [connection signal="body_exited" from="CharacterRotationRoot/ChaseArea" to="." method="_on_chase_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="timeout" from="AttackAnimationTimer" to="." method="_on_attack_animation_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

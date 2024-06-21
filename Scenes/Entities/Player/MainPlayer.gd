@@ -19,7 +19,7 @@ var slide_speed := 9
 @onready var player_coll = %PlayerColl.shape as BoxShape3D
 @onready var cameracontent = $Cameracontent as CameraContent
 @onready var interact_detector = %InteractDetector as RayCast3D
-@onready var hit_box = %HitBox as Area3D
+@onready var hit_box = $HitBox as Area3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -196,6 +196,9 @@ func try_interact():
 	if interact_detector.is_colliding():
 		var collision_object =  interact_detector.get_collider() as WorldObjectInteract
 		collision_object.interact()
+
+func take_damage(damage: int):
+	print("Player take damage: ", damage)
 
 #region SIGNALS
 # GINALS
