@@ -37,6 +37,9 @@ var branch_dir := 0
 #25,45,
 
 var intersetion_angles := [45,90]
+var all_room_scapes : Array[RoomScapeSystem]
+
+var finished_count := 0
 
 func _ready():
 	CONFIGAUTOLOAD.basic_autoconfig()
@@ -44,21 +47,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("enter"):
-		#var map_s = load("res://Resources/MazeResources/MazeMapsInfo.gd")
-		#var aux : Array
-		#var count := 0
-		#
-		#for way in $CombinerContent.get_children():
-			#if count != 0: 
-				#aux.append([way.transform.basis,way.position])
-				#
-			#
-			#count += 1
-		#
-		#CONFIGAUTOLOAD.save_new_map(aux)
-		#erase_map()
-		#await get_tree().create_timer(2.0).timeout
-		#load_map(CONFIGAUTOLOAD.maps.pick_random())
+
 		erase_map()
 		generate_maze(randi_range(7,15))
 
@@ -154,6 +143,7 @@ func generate_maze(_amount:int):
 		randomize_next_direction()
 		
 		combiner_content.add_child(new_segment)
+		
 		if segmens_from_the_last_room != 0:
 			segmens_from_the_last_room += 1
 		if segmens_from_the_last_room == 7:
@@ -168,6 +158,7 @@ func generate_maze(_amount:int):
 	
 	if not its_forced_finished_maze:
 		create_final_door()
+		
 
 func verify_maze_size():
 	if segments_count < 4:
@@ -201,23 +192,36 @@ func try_create_room(_pipe):
 	
 	var new_room = %Room.duplicate()
 	new_room.transform.basis = _pipe.transform.basis
-
+	var indicator = "NULL"
 	if room_edge == 1:
 		new_room.rotation_degrees.y += 90 
 		_pipe.get_node("Door").position = _pipe.get_node("StaticR").position
 		_pipe.get_node("StaticR").queue_free()
+		indicator = "right"
 		#new_room.position += _pipe.transform.basis.x * (7.0 + 3.0)
 	elif room_edge == 0:
 		new_room.rotation_degrees.y -= 90 
 		_pipe.get_node("Door").position = _pipe.get_node("StaticL").position
 		_pipe.get_node("StaticL").queue_free()
 	#	new_room.position -= _pipe.transform.basis.x * (7.0 + 3.0)
+		indicator = "left"
+	
 	new_room.position = _pipe.position
 	new_room.position.y = -2.291
 	new_room.position -= new_room.transform.basis.z * (7.0 + 3.0)
 	new_room.position += _pipe.transform.basis.z * (7.0/6)
 	
+	var new_scape_room := preload("res://Components/RoomScapeSystem/separated_scape_room_system.tscn").instantiate()
+	new_scape_room.position += new_scape_room.transform.basis.z * (7.0/1.5)
 	
+	new_room.add_child(new_scape_room)
+	
+	var new_indicator = Node3D.new() as Node3D
+	new_indicator.name = "to_"+indicator
+	new_room.add_child(new_indicator,true)
+	
+	all_room_scapes.append(new_scape_room.get_node("RoomScapeSystem"))
+	print(all_room_scapes)
 	
 	combiner_content.add_child(new_room)
 	
@@ -298,6 +302,8 @@ func create_final_door():
 		combiner_content.add_child(new_door)
 		
 	verify_maze_size()
+	$GUI.enter_dungeon()
+	$MainPlayer.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_collition_detector_area_entered(area):
 	if not its_forced_finished_maze:

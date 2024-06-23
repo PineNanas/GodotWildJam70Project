@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://do7hdv30wnul6"
+path="res://.godot/imported/Double_Door_RIGHT.obj-cf0e587598edb0e1c115e3712c3613cd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Double_Door_RIGHT.obj-cf0e587598edb0e1c115e3712c3613cd.mesh"]
+
+source_file="res://Assets/Models/Building/Walls/Double_Door_RIGHT.obj"
+dest_files=["res://.godot/imported/Double_Door_RIGHT.obj-cf0e587598edb0e1c115e3712c3613cd.mesh", "res://.godot/imported/Double_Door_RIGHT.obj-cf0e587598edb0e1c115e3712c3613cd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

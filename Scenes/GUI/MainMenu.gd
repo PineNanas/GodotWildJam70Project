@@ -34,10 +34,13 @@ func intro_splah():
 	t_splash.tween_property($GUI/ColorRect,"modulate",Color(1.0,1.0,1.0,alpha),time)
 
 func outro():
-	var t_splash : Tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	t_splash.tween_property($GUI/ColorRect,"modulate",Color(1.0,1.0,1.0,1.0),1.5)
+	var t_splash : Tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	t_splash.tween_property($GUI/ColorRect,"modulate",Color(1.0,1.0,1.0,1.0),4.0)
+	%PlayTrans.play()
 	await t_splash.finished
+	
 	return(true)
+	
 func auto_generate_menu_enviroment_objects():
 	
 	for x in randi_range(50,100):
@@ -64,8 +67,11 @@ func auto_generate_menu_enviroment_objects():
 
 
 func _on_enter_button_input_event(camera, event, position, normal, shape_idx):
+	
 	if event is InputEventMouseButton:
+		
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			
 			await outro()
 			get_tree().change_scene_to_file("res://Scenes/World/OverWorld/OverworldScene.tscn")
 	

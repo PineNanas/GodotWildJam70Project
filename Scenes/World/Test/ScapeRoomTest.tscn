@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6ymin2xs525p"]
+
+[ext_resource type="PackedScene" uid="uid://d3yc3curxo8d6" path="res://Components/RoomScapeSystem/RoomScapeSystem.tscn" id="1_ikfy2"]
+[ext_resource type="ArrayMesh" uid="uid://dklgeflx8ypg3" path="res://Assets/Models/Building/Walls/Double_Door_LEFT.obj" id="2_dpp1n"]
+[ext_resource type="ArrayMesh" uid="uid://do7hdv30wnul6" path="res://Assets/Models/Building/Walls/Double_Door_RIGHT.obj" id="3_tyerm"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_1wjgx"]
+size = Vector2(7, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ct5n"]
+size = Vector3(4.02148, 0.357422, 6.79285)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7rpma"]
+size = Vector3(0.154541, 2.18384, 1.68945)
+
+[node name="ScapeRoomTest" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_1wjgx")
+
+[node name="RoomScapeSystem" parent="." node_paths=PackedStringArray("floor_spawn", "door_to_close") instance=ExtResource("1_ikfy2")]
+floor_spawn = NodePath("../MeshInstance3D")
+door_to_close = NodePath("../Door")
+
+[node name="CollisionShape3D" parent="RoomScapeSystem/PlayerDetection" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27002, 0, -0.0275264)
+shape = SubResource("BoxShape3D_2ct5n")
+
+[node name="Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48541, 0, 0)
+visible = false
+
+[node name="DoubleDoorLeft" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.8)
+mesh = ExtResource("2_dpp1n")
+skeleton = NodePath("../..")
+
+[node name="DoubleDoorRight" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+mesh = ExtResource("3_tyerm")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door"]
+collision_layer = 8
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.848316, 0)
+shape = SubResource("BoxShape3D_7rpma")
+disabled = true
+
+[editable path="RoomScapeSystem"]

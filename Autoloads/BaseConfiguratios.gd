@@ -5,6 +5,7 @@ class_name auto_load_config
 var maps : Array
 
 
+var finished_mazes := 0
 
 var maze_info = load("res://Resources/MazeResources/MazeMapsInfo.gd")
 
