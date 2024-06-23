@@ -476,7 +476,7 @@ environment = SubResource("Environment_gxt3o")
 
 [node name="MainPlayer" parent="." instance=ExtResource("13_xugyn")]
 process_mode = 4
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.85161, -2.0395, 1.14668)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.0284667, -2.0395, 1.14668)
 
 [node name="PlaceholderHitbox" parent="MainPlayer/Cameracontent/PlayerCamera/Object" index="1" instance=ExtResource("26_6pe0h")]
 unique_name_in_owner = true

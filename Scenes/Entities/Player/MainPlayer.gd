@@ -83,9 +83,9 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	
-	if interact_detector.is_colliding():
+	if interact_detector.is_colliding() and e_action != null:
 		e_action.visible = true
-	else:
+	elif e_action != null:
 		e_action.visible = false
 		
 	
