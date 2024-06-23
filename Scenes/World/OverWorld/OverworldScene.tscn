@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bratqsol2mbfu"]
+[gd_scene load_steps=47 format=3 uid="uid://bratqsol2mbfu"]
 
 [ext_resource type="Script" path="res://Scenes/World/OverWorld/OverworldScene.gd" id="1_jvafl"]
 [ext_resource type="Texture2D" uid="uid://dfvg63uuades8" path="res://Assets/Textures/dirt_pixel1.png" id="2_d8w7f"]
@@ -22,6 +22,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b051idstc0h6l" path="res://Assets/Models/WorldObjects/Wood_Plank_1.obj" id="13_nls33"]
 [ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="14_62lmm"]
 [ext_resource type="PackedScene" uid="uid://btg36pweftypq" path="res://Scenes/Entities/Enemies/TestZombie.tscn" id="22_s4hds"]
+[ext_resource type="PackedScene" uid="uid://wygekfevvnvx" path="res://Scenes/Entities/Enemies/PatrolPoint.tscn" id="23_nrnt5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gkjph"]
 sky_top_color = Color(0.11561, 0.167254, 0.352436, 1)
@@ -224,7 +225,8 @@ text = "E"
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24.5197, 0, 1.76495)
 e_action = NodePath("../Cutscene/Canvas/EAction")
 
-[node name="Enemy" parent="." instance=ExtResource("22_s4hds")]
+[node name="Enemy1" parent="." instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0132713, 0.0383558, 0.0458302)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -934,5 +936,55 @@ shape = SubResource("BoxShape3D_4xdmg")
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="NavigationRegion3D/OverworldObjects/GiantFence"]
 transform = Transform3D(0.982548, 0, -0.18601, 0, 1, 0, 0.18601, 0, 0.982548, -26.7848, 0.359558, 7.15591)
 shape = SubResource("BoxShape3D_4xdmg")
+
+[node name="PatrolPoint1" parent="." instance=ExtResource("23_nrnt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.919, 0, 0)
+
+[node name="PatrolPoint2" parent="." instance=ExtResource("23_nrnt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.085, 0, -16.2428)
+
+[node name="PatrolPoint3" parent="." instance=ExtResource("23_nrnt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.6601)
+
+[node name="PatrolPoint4" parent="." instance=ExtResource("23_nrnt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0546, 0, 8.52184)
+
+[node name="PatrolPoint5" parent="." instance=ExtResource("23_nrnt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9419, -39.8061, 0)
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6034, 0, 6.49995)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint1"), NodePath("../PatrolPoint2")]
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.1265)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4"), NodePath("../PatrolPoint5")]
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.9009)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint1"), NodePath("../PatrolPoint4"), NodePath("../PatrolPoint5")]
+
+[node name="Enemy5" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0132713, 0.0383558, -12.1247)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4")]
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.21346, 0.0383558, -9.12936)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint5"), NodePath("../PatrolPoint4")]
+
+[node name="Enemy7" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7273, 0.0383558, -18.7249)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint2"), NodePath("../PatrolPoint3")]
+
+[node name="Enemy8" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("22_s4hds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75495, 0.0383558, 17.2438)
+patrol = true
+patrol_points = [NodePath("../PatrolPoint1"), NodePath("../PatrolPoint3"), NodePath("../PatrolPoint5")]
 
 [editable path="NavigationRegion3D/OverworldObjects/PanteonEntrance/WorldObjectInteract"]
