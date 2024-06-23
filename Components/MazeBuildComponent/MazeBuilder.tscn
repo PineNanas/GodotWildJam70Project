@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://74w7e3w7xul1"]
+[gd_scene load_steps=72 format=3 uid="uid://74w7e3w7xul1"]
 
 [ext_resource type="Script" path="res://Components/MazeBuildComponent/MazeBuilder.gd" id="1_3jpl1"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_nimll"]
@@ -65,6 +65,8 @@ size = Vector3(0.491211, 2.6944, 1.25024)
 [sub_resource type="BoxMesh" id="BoxMesh_j4ajd"]
 size = Vector3(7, 0.01, 7)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_vghe4"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk0b0"]
 shading_mode = 0
 albedo_color = Color(0.32549, 0.32549, 0.32549, 1)
@@ -108,6 +110,8 @@ size = Vector2(7, 7)
 [sub_resource type="BoxShape3D" id="BoxShape3D_t7ej1"]
 size = Vector3(0.296448, 3.08057, 7.50739)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_ii5b8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe4vg"]
 albedo_color = Color(0.45098, 0.45098, 0.45098, 1)
 albedo_texture = ExtResource("7_qlukw")
@@ -138,6 +142,8 @@ size = Vector3(3.24243, 2.62122, 0.376953)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bqf3s"]
 size = Vector3(0.645752, 2.8418, 3.51965)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_lfomb"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0h2l"]
 albedo_color = Color(0.45098, 0.45098, 0.45098, 1)
 albedo_texture = ExtResource("11_tb522")
@@ -158,6 +164,8 @@ roughness = 0.0
 size = Vector3(0.347107, 2.54645, 2.40356)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eb5l6"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_d2mwl"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_frrmw"]
 
@@ -280,6 +288,9 @@ randomize_amount = true
 [node name="BaseSpawnFloor" parent="CombinerContent/RectSegment/SegmentThingsRandomizer" index="0"]
 mesh = SubResource("BoxMesh_j4ajd")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CombinerContent/RectSegment"]
+navigation_mesh = SubResource("NavigationMesh_vghe4")
+
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(462.773, 0, 0, 0, 25.2851, 0, 0, 0, 491.47, 0, -3.875, 0)
 material_override = SubResource("StandardMaterial3D_fk0b0")
@@ -337,6 +348,9 @@ shape = SubResource("BoxShape3D_t7ej1")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0477514, 1.04028, -3.4035)
 shape = SubResource("BoxShape3D_t7ej1")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room"]
+navigation_mesh = SubResource("NavigationMesh_ii5b8")
+
 [node name="90Angle" type="Node3D" parent="." groups=["angle"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9108, 0, -5.56622)
@@ -389,6 +403,9 @@ collision_layer = 8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58405, -0.920898, 1.25983)
 shape = SubResource("BoxShape3D_bqf3s")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="90Angle"]
+navigation_mesh = SubResource("NavigationMesh_lfomb")
+
 [node name="45Angle" type="Node3D" parent="." groups=["angle"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.3013)
@@ -428,6 +445,9 @@ collision_mask = 67108864
 [node name="CollisionShape3D" type="CollisionShape3D" parent="45Angle/CollitionDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25027, -1.12644)
 shape = SubResource("BoxShape3D_eb5l6")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="45Angle"]
+navigation_mesh = SubResource("NavigationMesh_d2mwl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0166799, -0.999861, -0.000392868, -0.114075, 0.00151266, 0.993471, -0.993332, 0.0166158, -0.114084, 0, 0, 0)
