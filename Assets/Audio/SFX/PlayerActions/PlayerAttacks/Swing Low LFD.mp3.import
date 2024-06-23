@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqji3e8pdocsk"
+path="res://.godot/imported/Swing Low LFD.mp3-ddcbd0150df1d91bb8a301ae55ff6b5a.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/PlayerActions/PlayerAttacks/Swing Low LFD.mp3"
+dest_files=["res://.godot/imported/Swing Low LFD.mp3-ddcbd0150df1d91bb8a301ae55ff6b5a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

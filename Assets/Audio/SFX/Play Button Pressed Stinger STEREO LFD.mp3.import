@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbyjxi26a2et5"
+path="res://.godot/imported/Play Button Pressed Stinger STEREO LFD.mp3-1e8c9c585ad74dae8593fdee9bd56314.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Play Button Pressed Stinger STEREO LFD.mp3"
+dest_files=["res://.godot/imported/Play Button Pressed Stinger STEREO LFD.mp3-1e8c9c585ad74dae8593fdee9bd56314.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

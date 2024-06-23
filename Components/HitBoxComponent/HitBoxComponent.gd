@@ -16,6 +16,7 @@ func hit(_type_of_hit:type_of_hit):
 		
 		for hurt_box in get_overlapping_areas():
 			if hurt_box is HurtBox:
+				hurt_box._give_hit(1)
 				match _type_of_hit:
 					type_of_hit.LIGHT:
 						hurt_box.give_hit(light_damage)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=10 format=3 uid="uid://5avs083rhrp7"]
+
+[ext_resource type="Script" path="res://Components/ExtraObjects/WorldObjects/PlankAmbient.gd" id="1_ib3qi"]
+[ext_resource type="ArrayMesh" uid="uid://b051idstc0h6l" path="res://Assets/Models/WorldObjects/Wood_Plank_1.obj" id="2_oq0rv"]
+[ext_resource type="ArrayMesh" uid="uid://b82cmm0w8jyav" path="res://Assets/Models/WorldObjects/Wood_Plank_2.obj" id="3_la0c8"]
+[ext_resource type="ArrayMesh" uid="uid://b1ntq7jl1adyq" path="res://Assets/Models/WorldObjects/Wood_Plank_3.obj" id="4_oir6l"]
+[ext_resource type="ArrayMesh" uid="uid://c7tdm0yagyxqk" path="res://Assets/Models/WorldObjects/Wood_Plank_4.obj" id="5_f51m2"]
+[ext_resource type="Texture2D" uid="uid://domcpq0ghrqqi" path="res://Assets/Textures/Objects/Plank1.png" id="6_mqqkb"]
+[ext_resource type="Texture2D" uid="uid://c7ewsicpq42bd" path="res://Assets/Textures/Objects/Plank2.png" id="7_grd8u"]
+[ext_resource type="Texture2D" uid="uid://nadocvok1u6l" path="res://Assets/Textures/Objects/Plank3.png" id="8_j1jpp"]
+[ext_resource type="Texture2D" uid="uid://bgywkt5w4xeiu" path="res://Assets/Textures/Objects/Plank.png" id="9_v7kwk"]
+
+[node name="PlankAmbient" type="Node3D"]
+script = ExtResource("1_ib3qi")
+planks_mesh = Array[Mesh]([ExtResource("2_oq0rv"), ExtResource("3_la0c8"), ExtResource("4_oir6l"), ExtResource("5_f51m2")])
+plank_textures = Array[Texture2D]([ExtResource("6_mqqkb"), ExtResource("8_j1jpp"), ExtResource("9_v7kwk"), ExtResource("7_grd8u")])

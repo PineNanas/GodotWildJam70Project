@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://er25cawkeagt"]
+
+[ext_resource type="Texture2D" uid="uid://btlur3m0u1vau" path="res://Assets/Textures/Objects/WoodDoor.png" id="1_8dtt1"]
+[ext_resource type="ArrayMesh" uid="uid://dklgeflx8ypg3" path="res://Assets/Models/Building/Walls/Double_Door_LEFT.obj" id="1_s2nth"]
+[ext_resource type="PackedScene" uid="uid://d3yc3curxo8d6" path="res://Components/RoomScapeSystem/RoomScapeSystem.tscn" id="3_e1w2a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2iwce"]
+albedo_texture = ExtResource("1_8dtt1")
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm4qt"]
+size = Vector3(0.154541, 2.18384, 1.68945)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lvay"]
+size = Vector3(5.1311, 1, 5.96191)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xsde6"]
+size = Vector2(7, 7)
+
+[node name="SeparatedScapeRoomSystem" type="Node3D"]
+
+[node name="Door" type="Node3D" parent="."]
+transform = Transform3D(7.54979e-08, 0, 1.025, 0, 1, 0, -1, 0, 7.73853e-08, -0.816969, 0, 3.46847)
+visible = false
+
+[node name="DoubleDoorLeft" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.8)
+material_override = SubResource("StandardMaterial3D_2iwce")
+mesh = ExtResource("1_s2nth")
+skeleton = NodePath("../../..")
+
+[node name="DoubleDoorLeft2" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -7.15256e-07, 0, -0.79275)
+material_override = SubResource("StandardMaterial3D_2iwce")
+mesh = ExtResource("1_s2nth")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door"]
+collision_layer = 8
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.848316, 0)
+shape = SubResource("BoxShape3D_mm4qt")
+disabled = true
+
+[node name="RoomScapeSystem" parent="." node_paths=PackedStringArray("floor_spawn", "door_to_close") instance=ExtResource("3_e1w2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0899165, 0, -0.0487409)
+floor_spawn = NodePath("../MeshInstance3D")
+door_to_close = NodePath("../Door")
+
+[node name="Hit" parent="RoomScapeSystem/RockExample" index="1"]
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Broken" parent="RoomScapeSystem/RockExample" index="2"]
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="CollisionShape3D" parent="RoomScapeSystem/PlayerDetection" index="0"]
+shape = SubResource("BoxShape3D_3lvay")
+
+[node name="DoorClosed" parent="RoomScapeSystem" index="3"]
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="DoorOpen" parent="RoomScapeSystem" index="4"]
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_xsde6")
+skeleton = NodePath("../..")
+
+[editable path="RoomScapeSystem"]

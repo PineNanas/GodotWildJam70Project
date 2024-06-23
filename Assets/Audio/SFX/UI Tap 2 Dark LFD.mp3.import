@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btxq6acpdslg4"
+path="res://.godot/imported/UI Tap 2 Dark LFD.mp3-2d2ea8c1ea77f05e1178e89939d09cd1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/UI Tap 2 Dark LFD.mp3"
+dest_files=["res://.godot/imported/UI Tap 2 Dark LFD.mp3-2d2ea8c1ea77f05e1178e89939d09cd1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

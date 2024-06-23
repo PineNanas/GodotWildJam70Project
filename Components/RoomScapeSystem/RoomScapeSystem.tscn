@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3yc3curxo8d6"]
+
+[ext_resource type="Script" path="res://Components/RoomScapeSystem/RoomScapeSystem.gd" id="1_jj5ns"]
+[ext_resource type="Script" path="res://Components/RoomScapeSystem/RockExample.gd" id="2_w1mdk"]
+[ext_resource type="AudioStream" uid="uid://cq1pr00poo0r0" path="res://Assets/Audio/SFX/PlayerActions/PlayerAttacks/Shovel Hit Rock LFD.mp3" id="3_h4pub"]
+[ext_resource type="Script" path="res://Components/HurtBoxComponent/HurtBoxComponent.gd" id="3_wspaf"]
+[ext_resource type="AudioStream" uid="uid://qaqfgajgtoch" path="res://Assets/Audio/SFX/PlayerActions/Other/Barrel Crate Broken LFD.mp3" id="4_tdqkq"]
+[ext_resource type="PackedScene" uid="uid://djefei6fxmdd2" path="res://Assets/Models/Building/MazeObjects/Rock1 LFD V1.fbx" id="5_ufdsj"]
+[ext_resource type="AudioStream" uid="uid://d4jys88qst632" path="res://Assets/Audio/SFX/PlayerActions/Other/Door Close LFD.mp3" id="7_u7k00"]
+[ext_resource type="AudioStream" uid="uid://dtwousg6rxms2" path="res://Assets/Audio/SFX/PlayerActions/Other/Door Open LFD.mp3" id="8_g7mov"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1lgco"]
+size = Vector3(0.464844, 0.44751, 0.55957)
+
+[node name="RoomScapeSystem" type="Node3D"]
+script = ExtResource("1_jj5ns")
+
+[node name="RockExample" type="Node3D" parent="." node_paths=PackedStringArray("room_manager", "coll")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.656483, 0)
+visible = false
+script = ExtResource("2_w1mdk")
+room_manager = NodePath("..")
+coll = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RockExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000316739, 0)
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RockExample/StaticBody3D"]
+shape = SubResource("BoxShape3D_1lgco")
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="RockExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656483, 0)
+stream = ExtResource("3_h4pub")
+pitch_scale = 0.95
+
+[node name="Broken" type="AudioStreamPlayer3D" parent="RockExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656483, 0)
+stream = ExtResource("4_tdqkq")
+pitch_scale = 4.0
+
+[node name="Root Scene" parent="RockExample" instance=ExtResource("5_ufdsj")]
+transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, -0.0825044, 0)
+
+[node name="HurtBox" type="Area3D" parent="RockExample"]
+collision_layer = 524288
+script = ExtResource("3_wspaf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RockExample/HurtBox"]
+shape = SubResource("BoxShape3D_1lgco")
+
+[node name="Rocks" type="Node3D" parent="."]
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+
+[node name="DoorClosed" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_u7k00")
+pitch_scale = 3.99
+
+[node name="DoorOpen" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_g7mov")
+pitch_scale = 4.0
+
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]

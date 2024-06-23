@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx1t0m7310flm"
+path="res://.godot/imported/Shovel Digging 2 LFD.mp3-7359a9014392f72b498d264820574901.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/PlayerActions/PlayerAttacks/Shovel Digging 2 LFD.mp3"
+dest_files=["res://.godot/imported/Shovel Digging 2 LFD.mp3-7359a9014392f72b498d264820574901.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

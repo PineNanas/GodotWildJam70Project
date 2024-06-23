@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://74w7e3w7xul1"]
+[gd_scene load_steps=68 format=3 uid="uid://74w7e3w7xul1"]
 
 [ext_resource type="Script" path="res://Components/MazeBuildComponent/MazeBuilder.gd" id="1_3jpl1"]
 [ext_resource type="Texture2D" uid="uid://w7t42ae4k5pc" path="res://Assets/Textures/KenneyTestTextures/Dark/texture_08.png" id="2_nimll"]
@@ -15,16 +15,20 @@
 [ext_resource type="Texture2D" uid="uid://cx67wugfoxkbv" path="res://Assets/Textures/DungeonTexture/Wall45001.png" id="11_tb522"]
 [ext_resource type="ArrayMesh" uid="uid://6m1amcr3qfvb" path="res://Assets/Models/Building/Ceilings/Ceiling_90d.obj" id="11_x057y"]
 [ext_resource type="ArrayMesh" uid="uid://chakkcsqbp85g" path="res://Assets/Models/Building/Floors/Floor_45d.obj" id="12_mq7ql"]
+[ext_resource type="PackedScene" uid="uid://5avs083rhrp7" path="res://Components/ExtraObjects/WorldObjects/PlankAmbient.tscn" id="13_cr8bm"]
 [ext_resource type="PackedScene" uid="uid://bmsesnj5mmijy" path="res://Scenes/Entities/Player/MainPlayer.tscn" id="13_xugyn"]
 [ext_resource type="Texture2D" uid="uid://bj7t4ou18caew" path="res://Assets/Textures/DungeonTexture/Cell451.png" id="14_o172k"]
 [ext_resource type="ArrayMesh" uid="uid://crt01wnlmt0x3" path="res://Assets/Models/Building/Ceilings/Ceiling__45d.obj" id="14_sbm7p"]
 [ext_resource type="PackedScene" uid="uid://chbjp45srd1n3" path="res://Components/SegmentThingsRandomizer/SegmentThingsRandomizer.tscn" id="16_wc4u5"]
-[ext_resource type="PackedScene" uid="uid://tcd6sers8ixq" path="res://Assets/Models/Building/MazeObjects/Barrel With Texture LFD V1.fbx" id="17_qdyga"]
-[ext_resource type="PackedScene" uid="uid://c6qcfk40t22dk" path="res://Assets/Models/Building/MazeObjects/Box With Texture LFD V1.fbx" id="18_a50d1"]
 [ext_resource type="Texture2D" uid="uid://4mwmusxyf4fl" path="res://Assets/Textures/DungeonTexture/Borderfloor3x3texture1.png" id="19_8v4n4"]
 [ext_resource type="Texture2D" uid="uid://ymw147vpx747" path="res://Assets/Textures/DungeonTexture/Borderfloor45.png" id="20_83fed"]
 [ext_resource type="Script" path="res://Components/MazeBuildComponent/FinalDoor.gd" id="23_k17of"]
 [ext_resource type="PackedScene" uid="uid://d2rl1hollta4a" path="res://Components/WorldObjectsInteract/WorldObjectInteract.tscn" id="24_7luxs"]
+[ext_resource type="PackedScene" uid="uid://dia3y42ocguag" path="res://Components/HitBoxComponent/HitBoxComponent.tscn" id="26_6pe0h"]
+[ext_resource type="Script" path="res://Components/MazeBuildComponent/PlaceHolderAttack.gd" id="27_b2jvg"]
+[ext_resource type="Script" path="res://Components/MazeBuildComponent/GUI.gd" id="27_fwp6f"]
+[ext_resource type="AudioStream" uid="uid://dpdlaq7svebqu" path="res://Assets/Audio/SFX/Enviroment/Inside Dungeon Ambience LFD Not Redux.mp3" id="27_owfd0"]
+[ext_resource type="FontFile" uid="uid://bdg3frmotfum5" path="res://Assets/Fonts/Cup and Talon.ttf" id="28_ha418"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4i22"]
 albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
@@ -185,6 +189,12 @@ sky = SubResource("Sky_whv0w")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0206
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vkp7"]
+size = Vector3(0.655273, 0.517578, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31lgw"]
+size = Vector3(1, 1.67188, 0.492188)
+
 [node name="MazeBuilder" type="Node3D" node_paths=PackedStringArray("rect_segment")]
 script = ExtResource("1_3jpl1")
 turn_percentaje = 9.0
@@ -262,34 +272,13 @@ shape = SubResource("BoxShape3D_tf3nl")
 
 [node name="SegmentThingsRandomizer" parent="CombinerContent/RectSegment" instance=ExtResource("16_wc4u5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.28405, 2.44957)
-object_to_randomize = Array[PackedScene]([ExtResource("17_qdyga"), ExtResource("18_a50d1")])
-randomize_posivility = 14.375
+object_to_randomize = Array[PackedScene]([ExtResource("13_cr8bm")])
+randomize_posivility = 100.0
 is_randomize = true
-amount_of_objects = 2
+randomize_amount = true
 
 [node name="BaseSpawnFloor" parent="CombinerContent/RectSegment/SegmentThingsRandomizer" index="0"]
 mesh = SubResource("BoxMesh_j4ajd")
-
-[node name="Marker3D" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.902424, 0, 1.12172)
-
-[node name="Marker3D2" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.764302, 0, -1.2495)
-
-[node name="Marker3D3" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05481, 0, -1.39903)
-
-[node name="Marker3D4" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.880625, 0, -0.266994)
-
-[node name="Marker3D5" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.849106, 0, -0.14298)
-
-[node name="Marker3D6" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05619, 0, 2.12019)
-
-[node name="Marker3D7" type="Marker3D" parent="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.834132, 0, 1.13201)
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(462.773, 0, 0, 0, 25.2851, 0, 0, 0, 491.47, 0, -3.875, 0)
@@ -347,16 +336,6 @@ shape = SubResource("BoxShape3D_t7ej1")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Room/StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0477514, 1.04028, -3.4035)
 shape = SubResource("BoxShape3D_t7ej1")
-
-[node name="SegmentThingsRandomizer2" parent="Room" instance=ExtResource("16_wc4u5")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.153251, 3.85765)
-object_to_randomize = Array[PackedScene]([ExtResource("17_qdyga"), ExtResource("18_a50d1")])
-randomize_posivility = 14.375
-is_randomize = true
-amount_of_objects = 2
-
-[node name="BaseSpawnFloor" parent="Room/SegmentThingsRandomizer2" index="0"]
-mesh = SubResource("BoxMesh_j4ajd")
 
 [node name="90Angle" type="Node3D" parent="." groups=["angle"]]
 unique_name_in_owner = true
@@ -461,12 +440,14 @@ transform = Transform3D(519.562, 0, 0, 0, -2.27108e-05, -519.562, 0, 519.562, -2
 mesh = SubResource("QuadMesh_frrmw")
 surface_material_override/0 = SubResource("StandardMaterial3D_m1khk")
 
-[node name="FinalDoor" type="MeshInstance3D" parent="."]
+[node name="FinalDoor" type="MeshInstance3D" parent="." node_paths=PackedStringArray("maze_builder", "gui")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291405, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.744738, 0)
 material_override = SubResource("StandardMaterial3D_lxy8c")
 mesh = SubResource("BoxMesh_0n60f")
 script = ExtResource("23_k17of")
+maze_builder = NodePath("..")
+gui = NodePath("../GUI")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FinalDoor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666912, 0)
@@ -487,18 +468,66 @@ shape = SubResource("BoxShape3D_3k03a")
 environment = SubResource("Environment_gxt3o")
 
 [node name="MainPlayer" parent="." instance=ExtResource("13_xugyn")]
+process_mode = 4
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -2.0395, 1.14668)
 
+[node name="PlaceholderHitbox" parent="MainPlayer/Cameracontent/PlayerCamera/Object" index="1" instance=ExtResource("26_6pe0h")]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" parent="MainPlayer/Cameracontent/PlayerCamera/Object/PlaceholderHitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462184, 0.357142, -0.650743)
+shape = SubResource("BoxShape3D_3vkp7")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="MainPlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.310897, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85478, 0)
 light_color = Color(1, 0.818282, 0.520625, 1)
 light_energy = 4.087
 omni_range = 5.42536
+
+[node name="PlayerArea" type="Area3D" parent="MainPlayer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainPlayer/PlayerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175638, 0)
+shape = SubResource("BoxShape3D_31lgw")
+
+[node name="PlaceHolderAttack" type="Node3D" parent="MainPlayer" node_paths=PackedStringArray("ray")]
+script = ExtResource("27_b2jvg")
+ray = NodePath("../Cameracontent/PlayerCamera/Object/PlaceholderHitbox")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44158, 0)
+stream = ExtResource("27_owfd0")
+autoplay = true
+bus = &"SFX"
+
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource("27_fwp6f")
+
+[node name="TransitionColor" type="ColorRect" parent="GUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.109804, 0.105882, 0.105882, 1)
+
+[node name="Label" type="Label" parent="GUI/TransitionColor"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 282.0
+offset_right = 1161.0
+offset_bottom = 411.0
+theme_override_fonts/font = ExtResource("28_ha418")
+theme_override_font_sizes/font_size = 59
+text = "If a wall comes between you and the crown
+                       press \"R\" to return..."
 
 [connection signal="area_entered" from="CombinerContent/RectSegment/CollitionDetector" to="." method="_on_collition_detector_area_entered"]
 [connection signal="area_entered" from="90Angle/CollitionDetector" to="." method="_on_collition_detector_area_entered"]
 [connection signal="area_entered" from="45Angle/CollitionDetector" to="." method="_on_collition_detector_area_entered"]
 
 [editable path="CombinerContent/RectSegment/SegmentThingsRandomizer"]
-[editable path="Room/SegmentThingsRandomizer2"]
 [editable path="FinalDoor/WorldObjectInteract"]
+[editable path="MainPlayer"]
+[editable path="MainPlayer/Cameracontent/PlayerCamera/Object/PlaceholderHitbox"]
