@@ -13,8 +13,9 @@ var slide_speed := 9
 @export_range(10, 1200, 1) var acceleration: float = 100 # m/s^2
 @export_range(0.1, 15.0, 0.1) var jump_height: float = 1 # m
 @export_range(0.1, 3.0, 0.1, "or_greater") var camera_sens: float = 1
-
 #NODES
+@export var e_action : Label
+
 @onready var player_camera = %PlayerCamera as Camera3D
 @onready var player_coll = %PlayerColl.shape as BoxShape3D
 @onready var cameracontent = $Cameracontent as CameraContent
@@ -81,6 +82,11 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("jump") and not sliding: jumping = true
 
 func _physics_process(delta):
+	if interact_detector.is_colliding():
+		%EAction.visible = true
+	else:
+		%EAction.visible = true
+		
 	
 	# if nothing happends, but player are in movement, automaticly walking on true
 	if Input.get_vector("left_m", "right_m", "forward_m", "backward_m") != Vector2.ZERO and !runing and !walking and !sliding and !crunching:
